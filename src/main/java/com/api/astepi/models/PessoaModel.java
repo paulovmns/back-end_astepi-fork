@@ -2,6 +2,8 @@ package com.api.astepi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "TB_PESSOA")
@@ -10,7 +12,7 @@ public class PessoaModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false, unique = true, length = 255)
     private String nome;
@@ -39,11 +41,14 @@ public class PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 9)
     private String senha;
 
-    public Long getId() {
+    @Column(nullable = false)
+    private LocalDateTime registrationDate;
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -117,5 +122,13 @@ public class PessoaModel implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }

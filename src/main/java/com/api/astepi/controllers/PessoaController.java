@@ -6,12 +6,15 @@ import com.api.astepi.models.PessoaModel;
 import com.api.astepi.repositories.PessoaRepository;
 import com.api.astepi.services.PessoaService;
 
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -25,9 +28,9 @@ public class PessoaController {
 
     @PostMapping
     public ResponseEntity<Object> savePessoa(@RequestBody @Valid PessoaDto pessoaDto){
-        var pesssoaModel = new PessoaModel();
-        BeanUtils.copyProperties(pessoaDto,pesssoaModel);
-        pesssoaModel.setRegistrationDate(localDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(pesssoaModel));
+        var pessoaModel = new PessoaModel();
+        BeanUtils.copyProperties(pessoaDto,pessoaModel);
+        pessoaModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
+        return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.save(pessoaModel));
     }
 }

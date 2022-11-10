@@ -20,7 +20,7 @@ public class PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 14)
     private String cpf;
 
-    @Column(nullable = false, length = 9)
+    @Column(nullable = false, length = 11)
     private int celular;
 
     @Column(nullable = false, length = 50)
@@ -131,4 +131,5 @@ public class PessoaModel implements Serializable {
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
     }
+
 }

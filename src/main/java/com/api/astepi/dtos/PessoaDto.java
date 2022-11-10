@@ -13,7 +13,7 @@ public class PessoaDto {
     private String cpf;
 
     @NotBlank
-    @Size(max = 9)
+    @Size(max = 11)
     private int celular;
 
     @NotBlank

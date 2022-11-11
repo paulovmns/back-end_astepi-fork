@@ -15,7 +15,7 @@ public class AstepiApplication {
 
 	@GetMapping("/")
 	public String index(){
-		return "Olá Mundo, Paulo!";
+		return "Olá Mundo!";
 	}
 
 }

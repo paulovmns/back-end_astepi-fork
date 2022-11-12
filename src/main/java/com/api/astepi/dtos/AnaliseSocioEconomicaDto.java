@@ -1,7 +1,7 @@
 package com.api.astepi.dtos;
 
 
-import com.api.astepi.models.AdvogadoVoluntarioModel;
+//import com.api.astepi.models.AdvogadoVoluntarioModel;
 import com.api.astepi.models.UsuarioModel;
 
 import javax.validation.constraints.NotBlank;
@@ -46,7 +46,7 @@ public class AnaliseSocioEconomicaDto {
     UsuarioModel usuarioModel;
 
     @NotBlank
-    AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    //AdvogadoVoluntarioModel advogadoVoluntarioModel;
 
     public int getNumeroDependentes() {
         return numeroDependentes;
@@ -144,11 +144,11 @@ public class AnaliseSocioEconomicaDto {
         this.usuarioModel = usuarioModel;
     }
 
-    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        return advogadoVoluntarioModel;
-    }
+    //public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
+        //return advogadoVoluntarioModel;
+    //}
 
-    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
-    }
+    //public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
+        //this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    //}
 }

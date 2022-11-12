@@ -8,24 +8,24 @@ import javax.validation.constraints.NotBlank;
 public class PastaAtendimentoDto {
 
     @NotBlank
-    SecretariaModel secretariaModel;
+    SecretariaDto secretariaDto;
 
     @NotBlank
-    AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    AdvogadoVoluntarioDto advogadoVoluntarioDto;
 
-    public SecretariaModel getSecretariaModel() {
-        return secretariaModel;
+    public SecretariaDto getSecretariaDto() {
+        return secretariaDto;
     }
 
-    public void setSecretariaModel(SecretariaModel secretariaModel) {
-        this.secretariaModel = secretariaModel;
+    public void setSecretariaDto(SecretariaDto secretariaDto) {
+        this.secretariaDto = secretariaDto;
     }
 
-    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        return advogadoVoluntarioModel;
+    public AdvogadoVoluntarioDto getAdvogadoVoluntarioDto() {
+        return advogadoVoluntarioDto;
     }
 
-    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    public void setAdvogadoVoluntarioDto(AdvogadoVoluntarioDto advogadoVoluntarioDto) {
+        this.advogadoVoluntarioDto = advogadoVoluntarioDto;
     }
 }

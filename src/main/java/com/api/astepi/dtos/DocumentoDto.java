@@ -11,10 +11,10 @@ public class DocumentoDto {
     private String nome;
 
     @NotBlank
-    UsuarioModel usuarioModel;
+    UsuarioDto usuarioDto;
 
     @NotBlank
-    AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    AdvogadoVoluntarioDto advogadoVoluntarioDto;
 
     public String getNome() {
         return nome;
@@ -24,19 +24,19 @@ public class DocumentoDto {
         this.nome = nome;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public UsuarioDto getUsuarioDto() {
+        return usuarioDto;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
+    public void setUsuarioDto(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
     }
 
-    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        return advogadoVoluntarioModel;
+    public AdvogadoVoluntarioDto getAdvogadoVoluntarioDto() {
+        return advogadoVoluntarioDto;
     }
 
-    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    public void setAdvogadoVoluntarioDto(AdvogadoVoluntarioDto advogadoVoluntarioDto) {
+        this.advogadoVoluntarioDto = advogadoVoluntarioDto;
     }
 }

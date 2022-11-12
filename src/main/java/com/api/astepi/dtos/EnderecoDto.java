@@ -19,9 +19,6 @@ public class EnderecoDto {
     private String complemento;
 
     @NotBlank
-    private int telefoneFixo;
-
-    @NotBlank
     private int celular;
 
     @NotBlank
@@ -34,7 +31,7 @@ public class EnderecoDto {
     private String estado;
 
     @NotBlank
-    UsuarioModel usuarioModel;
+    UsuarioDto usuarioDto;
 
     public String getRua() {
         return rua;
@@ -66,14 +63,6 @@ public class EnderecoDto {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
-    }
-
-    public int getTelefoneFixo() {
-        return telefoneFixo;
-    }
-
-    public void setTelefoneFixo(int telefoneFixo) {
-        this.telefoneFixo = telefoneFixo;
     }
 
     public int getCelular() {
@@ -108,11 +97,11 @@ public class EnderecoDto {
         this.estado = estado;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public UsuarioDto getUsuarioDto() {
+        return usuarioDto;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
+    public void setUsuarioDto(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
     }
 }

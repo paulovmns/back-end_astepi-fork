@@ -43,7 +43,7 @@ public class AnaliseSocioEconomicaDto {
     private boolean portaDeEntrada;
 
     @NotBlank
-    UsuarioModel usuarioModel;
+    UsuarioDto usuarioDto;
 
     @NotBlank
     //AdvogadoVoluntarioModel advogadoVoluntarioModel;
@@ -136,12 +136,12 @@ public class AnaliseSocioEconomicaDto {
         this.portaDeEntrada = portaDeEntrada;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public UsuarioDto getUsuarioDto() {
+        return usuarioDto;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
+    public void setUsuarioDto(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
     }
 
     //public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {

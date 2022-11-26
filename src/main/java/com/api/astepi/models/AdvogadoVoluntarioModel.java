@@ -2,26 +2,25 @@ package com.api.astepi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_PESSOA")
-
-public class AdvogadoVolutarioModel implements Serializable {
-
+@Table(name = "TB_ADVOGADOVOLUNTARIO")
+public class AdvogadoVoluntarioModel implements Serializable {
     private static final long serialVersionUID = 1l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID numOAB;
+    @Column(nullable = false, unique = true, length = 255)
+    private String numOAB;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 255)
     private String formacaoAcad;
+
+    @Column(nullable = false, unique = true, length = 255)
+    UsuarioModel usuarioModel;
 
     public UUID getId() {
         return id;
@@ -31,7 +30,7 @@ public class AdvogadoVolutarioModel implements Serializable {
         this.id = id;
     }
 
-    public UUID getnumOAB() {
+    public String getNumOAB() {
         return numOAB;
     }
 
@@ -47,6 +46,11 @@ public class AdvogadoVolutarioModel implements Serializable {
         this.formacaoAcad = formacaoAcad;
     }
 
-    public void setRegistrationform(LocalDateTime utc) {
+    public UsuarioModel getUsuarioModel() {
+        return usuarioModel;
+    }
+
+    public void setUsuarioModel(UsuarioModel usuarioModel) {
+        this.usuarioModel = usuarioModel;
     }
 }

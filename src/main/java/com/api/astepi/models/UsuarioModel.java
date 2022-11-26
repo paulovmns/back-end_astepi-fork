@@ -78,7 +78,7 @@ public class UsuarioModel extends PessoaModel implements Serializable {
         this.nacionalidade = nacionalidade;
     }
 
-    public String getNaturalidade(String moreno) {
+    public String getNaturalidade() {
         return naturalidade;
     }
 

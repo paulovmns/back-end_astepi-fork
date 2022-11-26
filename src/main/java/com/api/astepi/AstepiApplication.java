@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AstepiApplication {
 
-	//public static void main(String[] args) {
-		//SpringApplication.run(AstepiApplication.class, args);
-	//}
+	public static void main(String[] args) {
+		SpringApplication.run(AstepiApplication.class, args);
+	}
 
 	@GetMapping("/")
 	public String index(){
 		return "Olá Mundo!";
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		PessoaModel p1 = new PessoaModel();
 		UsuarioModel u1 = new UsuarioModel();
 		EnderecoModel e1 = new EnderecoModel();
 		p1.setNome("Everson");
 		p1.setCpf("089.123.456-78");
-		u1.getNaturalidade("Moreno");
+		//u1.getNaturalidade();
 		//e1.("Rua do Príncipe");
 
 
@@ -39,6 +39,6 @@ public class AstepiApplication {
 
 
 
-	}
+	}*/
 
 }

@@ -3,7 +3,10 @@ package com.api.astepi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "TB_ENDERECO")
@@ -43,6 +46,10 @@ public class EnderecoModel implements Serializable {
 
     @Column(nullable = false, unique = true, length = 255)
     UsuarioModel usuarioModel;
+
+    @OneToMany(targetEntity= UsuarioModel.class, fetch=FetchType.EAGER)
+    @JoinColumn(name="usuario_id")
+    private List<UsuarioModel> usuarios;
 
     public UUID getId() {
         return id;
@@ -124,12 +131,19 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    public UsuarioModel getUsuarioModel() {
+    /*public UsuarioModel getUsuarioModel() {
         return usuarioModel;
     }
 
     public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
+    }*/
+
+    public List<UsuarioModel> getUsuarioModel(){
+        return usuarios;
+    }
+    public void setUsuarioModel(List<UsuarioModel> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public boolean comprovanteResid() {

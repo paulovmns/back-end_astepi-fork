@@ -5,6 +5,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "TB_USUARIO")
@@ -33,6 +35,10 @@ public class UsuarioModel extends PessoaModel implements Serializable {
     @JoinColumn(nullable = false, unique = true)
     @ManyToOne
     FormularioModel formularioModel;
+
+    @JoinColumn(nullable = false, unique = true)
+    @ManyToOne
+    AgendamentoModel agendamentoModel;
 
 
 

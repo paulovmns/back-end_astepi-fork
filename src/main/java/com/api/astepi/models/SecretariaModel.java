@@ -7,18 +7,15 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "TB_SECRETARIA")
-
 public class SecretariaModel implements Serializable {
-
     private static final long serialVersionUID = 1l;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(nullable = false)
-    private Form registrationForm;
-
     private UUID id;
+
+    @Column(nullable = false, unique = true, length = 255)
+    FormularioModel formularioModel;
 
     public UUID getId() {
         return id;
@@ -28,9 +25,11 @@ public class SecretariaModel implements Serializable {
         this.id = id;
     }
 
-    public LocalDateTime getRegistrationForm() {
-        return registrationForm;
+    public FormularioModel getFormularioModel() {
+        return formularioModel;
     }
-    public void setRegistratinForm(Form utc) {
+
+    public void setFormularioModel(FormularioModel formularioModel) {
+        this.formularioModel = formularioModel;
     }
 }

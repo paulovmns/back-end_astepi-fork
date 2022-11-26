@@ -30,8 +30,9 @@ public class UsuarioModel extends PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 25)
     private String naturalidade;
 
-    @Column(nullable = false, unique = true, length = 255)
-    //FormularioModel formularioModel;
+    @JoinColumn(nullable = false, unique = true)
+    @ManyToOne
+    FormularioModel formularioModel;
 
 
 

@@ -10,11 +10,10 @@ public class AdvogadoVoluntarioDto {
     private String numOAB;
 
     @NotBlank
-    private long id;
-
-    @NotBlank
     private String formacaoAcad;
 
+    @NotBlank
+    UsuarioDto usuarioDto;
 
     public String getNumOAB() {
         return numOAB;
@@ -24,20 +23,19 @@ public class AdvogadoVoluntarioDto {
         this.numOAB = numOAB;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public long setId(String id) {
-        this.id = id;
-    }
-
-    public int getformacaoAcad() {
+    public String getFormacaoAcad() {
         return formacaoAcad;
     }
 
-    public void setFormacaoAcad(int formacaoAcad) {
+    public void setFormacaoAcad(String formacaoAcad) {
         this.formacaoAcad = formacaoAcad;
     }
 
+    public UsuarioDto getUsuarioDto() {
+        return usuarioDto;
+    }
+
+    public void setUsuarioDto(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
+    }
 }

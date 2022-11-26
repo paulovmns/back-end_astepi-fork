@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_PASTAATENDIMENTOMODEL")
+@Table(name = "TB_PASTAATENDIMENTO")
 public class PastaAtendimentoModel implements Serializable {
     private static final long serialVersionUID = 1l;
 

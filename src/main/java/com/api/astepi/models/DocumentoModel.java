@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_DOCUMENTOMODEL")
+@Table(name = "TB_DOCUMENTO")
 public class DocumentoModel implements Serializable {
     private static final long serialVersionUID = 1l;
 

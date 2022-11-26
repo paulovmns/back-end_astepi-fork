@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_DECLARACAOINICIALMODEL")
+@Table(name = "TB_DECLARACAOINICIAL")
 
 public class DeclaracaoInicialModel {
 
@@ -19,9 +19,14 @@ public class DeclaracaoInicialModel {
     @Column(nullable = false, unique = true, length = 255)
     private String narrativa;
 
-
     @Column(nullable = false, unique = true, length = 255)
     private boolean parecerVoluntario;
+
+    @Column(nullable = false, unique = true, length = 255)
+    private boolean homologacaoDocente;
+
+    @Column(nullable = false, unique = true, length = 255)
+    AdvogadoVoluntarioModel advogadoVoluntarioModel;
 
     public UUID getId() {
         return id;
@@ -31,7 +36,6 @@ public class DeclaracaoInicialModel {
         this.id = id;
     }
 
-
     public String getNarrativa() {
         return narrativa;
     }
@@ -40,7 +44,7 @@ public class DeclaracaoInicialModel {
         this.narrativa = narrativa;
     }
 
-    public boolean getParecerVoluntario() {
+    public boolean isParecerVoluntario() {
         return parecerVoluntario;
     }
 
@@ -48,5 +52,19 @@ public class DeclaracaoInicialModel {
         this.parecerVoluntario = parecerVoluntario;
     }
 
+    public boolean isHomologacaoDocente() {
+        return homologacaoDocente;
+    }
 
+    public void setHomologacaoDocente(boolean homologacaoDocente) {
+        this.homologacaoDocente = homologacaoDocente;
+    }
+
+    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
+        return advogadoVoluntarioModel;
+    }
+
+    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
+        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    }
 }

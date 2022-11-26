@@ -11,11 +11,13 @@ public class DeclaracaoInicialDto {
     private String narrativa;
 
     @NotBlank
-    private long id;
-
-    @NotBlank
     private boolean parecerVoluntario;
 
+    @NotBlank
+    private boolean homologacaoDocente;
+
+    @NotBlank
+    DeclaracaoInicialDto declaracaoInicialDto;
 
     public String getNarrativa() {
         return narrativa;
@@ -25,7 +27,7 @@ public class DeclaracaoInicialDto {
         this.narrativa = narrativa;
     }
 
-    public boolean getParecerVoluntario() {
+    public boolean isParecerVoluntario() {
         return parecerVoluntario;
     }
 
@@ -33,10 +35,19 @@ public class DeclaracaoInicialDto {
         this.parecerVoluntario = parecerVoluntario;
     }
 
-    public long getId() {  return id;    }
+    public boolean isHomologacaoDocente() {
+        return homologacaoDocente;
+    }
 
-    public long setId(long id) {  this.id = id;}
+    public void setHomologacaoDocente(boolean homologacaoDocente) {
+        this.homologacaoDocente = homologacaoDocente;
+    }
 
+    public DeclaracaoInicialDto getDeclaracaoInicialDto() {
+        return declaracaoInicialDto;
+    }
 
-
+    public void setDeclaracaoInicialDto(DeclaracaoInicialDto declaracaoInicialDto) {
+        this.declaracaoInicialDto = declaracaoInicialDto;
+    }
 }

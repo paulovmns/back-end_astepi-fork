@@ -51,7 +51,7 @@ public class AnaliseSocioEconomicaModel implements Serializable {
     UsuarioModel usuarioModel;
 
     @Column(nullable = false, unique = true, length = 255)
-    //AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    AdvogadoVoluntarioModel advogadoVoluntarioModel;
 
     public UUID getId() {
         return id;
@@ -157,13 +157,13 @@ public class AnaliseSocioEconomicaModel implements Serializable {
         this.usuarioModel = usuarioModel;
     }
 
-   // public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-       // return advogadoVoluntarioModel;
-    //}
+    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
+        return advogadoVoluntarioModel;
+    }
 
-    //public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-      //  this.advogadoVoluntarioModel = advogadoVoluntarioModel;
-    //}
+    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
+        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    }
 
     public double rendaPerCapita() {
         return (this.rendaFamiliar/this.numeroDependentes);

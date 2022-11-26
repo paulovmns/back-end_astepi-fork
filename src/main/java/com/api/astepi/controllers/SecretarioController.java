@@ -26,7 +26,7 @@ import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/SecretarioModel")
+@RequestMapping("/secretarios")
 
 public class SecretarioController {
 

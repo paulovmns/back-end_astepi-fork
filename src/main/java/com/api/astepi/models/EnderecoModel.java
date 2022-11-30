@@ -47,9 +47,8 @@ public class EnderecoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     UsuarioModel usuarioModel;
 
-    @OneToMany(targetEntity= UsuarioModel.class, fetch=FetchType.EAGER)
-    @JoinColumn(name="usuario_id")
-    private List<UsuarioModel> usuarios;
+
+    //private List<UsuarioModel> usuarios;
 
     public UUID getId() {
         return id;
@@ -131,20 +130,20 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    /*public UsuarioModel getUsuarioModel() {
+    public UsuarioModel getUsuarioModel() {
         return usuarioModel;
     }
 
     public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
-    }*/
+    }
 
-    public List<UsuarioModel> getUsuarioModel(){
-        return usuarios;
-    }
-    public void setUsuarioModel(List<UsuarioModel> usuarios) {
-        this.usuarios = usuarios;
-    }
+    //public List<UsuarioModel> getUsuarioModel(){
+       // return usuarios;
+    //}
+    //public void setUsuarioModel(List<UsuarioModel> usuarios) {
+       // this.usuarios = usuarios;
+   // }
 
     public boolean comprovanteResid() {
         String entregue = "N";

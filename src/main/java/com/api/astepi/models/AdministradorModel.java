@@ -21,9 +21,8 @@ public class AdministradorModel extends PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     UsuarioModel usuarioModel;
 
-    @OneToMany(targetEntity= UsuarioModel.class, fetch=FetchType.EAGER)
-    @JoinColumn(name="usuario_id")
-    private List<UsuarioModel> usuarios;
+
+    //private List<UsuarioModel> usuarios;
 
     @Override
     public UUID getId() {
@@ -42,12 +41,12 @@ public class AdministradorModel extends PessoaModel implements Serializable {
     public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
     }
-    public List<UsuarioModel> getUsuarioModel(){
+    /*public List<UsuarioModel> getUsuarioModel(){
         return usuarios;
     }
     public void setUsuarioModel(List<UsuarioModel> usuarios) {
         this.usuarios = usuarios;
-    }
+    }*/
 
 
 }

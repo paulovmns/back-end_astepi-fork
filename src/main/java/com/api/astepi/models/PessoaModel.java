@@ -44,6 +44,7 @@ public class PessoaModel implements Serializable {
     @Column(nullable = false)
     private LocalDateTime registrationDate;
 
+
     public UUID getId() {
         return id;
     }

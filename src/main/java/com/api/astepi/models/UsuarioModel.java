@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "TB_USUARIO")
-public class UsuarioModel extends PessoaModel implements Serializable {
+public class UsuarioModel extends PessoaModel  {
     private static final long serialVersionUID = 11;
 
     @Id
@@ -32,13 +32,13 @@ public class UsuarioModel extends PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 25)
     private String naturalidade;
 
-    @JoinColumn(nullable = false, unique = true)
-    @ManyToOne
+    @Column(nullable = false, unique = true, length = 255)
     FormularioModel formularioModel;
 
-    @JoinColumn(nullable = false, unique = true)
-    @ManyToOne
+    @Column(nullable = false, unique = true, length = 255)
     AgendamentoModel agendamentoModel;
+
+
 
 
 

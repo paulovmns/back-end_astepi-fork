@@ -29,20 +29,16 @@ public class AgendamentoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     private String sala;
 
-    @JoinColumn(name = "documento_id")
-    @ManyToOne
+    @Column(nullable = false, unique = true, length = 255)
     UsuarioModel usuarioModel;
 
-    @JoinColumn(name= "secretaria_id")
-    @ManyToOne(targetEntity= SecretariaModel.class, fetch=FetchType.EAGER)
+    @Column(nullable = false, unique = true, length = 255)
     SecretariaModel secretariaModel;
 
-    @OneToMany(targetEntity= EnderecoModel.class, fetch=FetchType.EAGER)
-    @JoinColumn(name="endereco_id")
+    @Column(nullable = false, unique = true, length = 255)
     EnderecoModel enderecoModel;
 
-    @JoinColumn(name= "documento_id")
-    @ManyToOne(targetEntity= DocumentoModel.class, fetch=FetchType.EAGER)
+    @Column(nullable = false, unique = true, length = 255)
     DocumentoModel documentoModel;
 
     public UUID getId() {
@@ -93,13 +89,13 @@ public class AgendamentoModel implements Serializable {
         this.sala = sala;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
-    }
+    //public UsuarioModel getUsuarioModel() {
+        //return usuarioModel;
+   // }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
+    //public void setUsuarioModel(UsuarioModel usuarioModel) {
+        //this.usuarioModel = usuarioModel;
+    //}
 
     public SecretariaModel getSecretariaModel() {
         return secretariaModel;

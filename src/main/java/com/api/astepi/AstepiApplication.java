@@ -12,16 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @RestController
-@EntityScan(basePackages = {
-		"com.api.astepi.models"
-})
-@EnableJpaRepositories(basePackages = {
-		"com.api.astepi.repositories"
-})
 public class AstepiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AstepiApplication.class, args);
+
+
 	}
 
 	@GetMapping("/")
@@ -29,6 +25,7 @@ public class AstepiApplication {
 		return "Olá Mundo!";
 	}
 
+}
 	/*public static void main(String[] args) {
 		PessoaModel p1 = new PessoaModel();
 		UsuarioModel u1 = new UsuarioModel();
@@ -49,4 +46,4 @@ public class AstepiApplication {
 
 	}*/
 
-}
+

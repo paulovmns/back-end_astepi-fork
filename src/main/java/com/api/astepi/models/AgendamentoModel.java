@@ -41,6 +41,11 @@ public class AgendamentoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     DocumentoModel documentoModel;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuarioModel_id")
+    private UsuarioModel usuario;
+
+
     public UUID getId() {
         return id;
     }

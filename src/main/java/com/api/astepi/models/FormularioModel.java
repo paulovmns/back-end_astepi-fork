@@ -19,6 +19,12 @@ public class FormularioModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     SecretariaModel secretariaModel;
 
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuarioModel_id")
+    private UsuarioModel usuario;
+
+
     public UUID getId() {
         return id;
     }

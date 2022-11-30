@@ -42,6 +42,12 @@ public class UsuarioModel extends PessoaModel  {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioModel")
     private List<EnderecoModel> endereco;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioModel")
+    private List<AgendamentoModel> agendamento;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "usuarioModel")
+    private List<FormularioModel> formulario;
+
 
 
 

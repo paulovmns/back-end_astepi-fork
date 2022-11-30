@@ -13,19 +13,19 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, UUID> {
 
 
 
-   // List<UsuarioModel> findByNome(@Param("name") String name);
+     List<UsuarioModel> findByNome(@Param("name") String name);
 
 
-    //@Query("SELECT c.nome FROM UsuarioModel c where c.id = :id")
-   // UsuarioModel findNomeById(@Param("id") Long id);
+    @Query("SELECT c.nome FROM UsuarioModel c where c.id = :id")
+    UsuarioModel findNomeById(@Param("id") Long id);
 
     ///**
     // * Método que retorna uma lista de usuarios fazendo a busca pelo nome passado
-     //como parâmetro e ordenando os
-     //* usuarios pelo nome.
-     /*
+    //como parâmetro e ordenando os
+    //* usuarios pelo nome.
+    /*
      * @param name
      * @return lista de clientes
      */
-    //List<UsuarioModel> findByNomeOrderByNome(@Param("name") String name);
+    List<UsuarioModel> findByNomeOrderByNome(@Param("name") String name);
 }

@@ -1,7 +1,5 @@
 package com.api.astepi.dtos;
 
-import com.api.astepi.models.UsuarioModel;
-
 import javax.validation.constraints.NotBlank;
 
 public class EnderecoDto {

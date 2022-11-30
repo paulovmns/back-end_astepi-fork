@@ -3,10 +3,9 @@ package com.api.astepi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Table(name = "TB_ENDERECO")
@@ -44,21 +43,23 @@ public class EnderecoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     private String estado;
 
-    @Column(nullable = false, unique = true, length = 255)
-    UsuarioModel usuarioModel;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuarioModel_id")
+    private UsuarioModel usuarioModel;
 
-
-    //private List<UsuarioModel> usuarios;
 
     public UUID getId() {
+
         return id;
     }
 
     public void setId(UUID id) {
+
         this.id = id;
     }
 
     public String getRua() {
+
         return rua;
     }
 
@@ -67,58 +68,72 @@ public class EnderecoModel implements Serializable {
     }
 
     public int getNumero() {
+
         return numero;
     }
 
     public void setNumero(int numero) {
+
         this.numero = numero;
     }
 
     public String getCep() {
+
         return cep;
     }
 
     public void setCep(String cep) {
+
         this.cep = cep;
     }
 
     public String getComplemento() {
+
         return complemento;
     }
 
     public void setComplemento(String complemento) {
+
         this.complemento = complemento;
     }
 
     public int getTelefoneFixo() {
+
         return telefoneFixo;
     }
 
     public void setTelefoneFixo(int telefoneFixo) {
+
         this.telefoneFixo = telefoneFixo;
     }
 
     public int getCelular() {
+
         return celular;
     }
 
     public void setCelular(int celular) {
+
         this.celular = celular;
     }
 
     public String getBairro() {
+
         return bairro;
     }
 
     public void setBairro(String bairro) {
+
         this.bairro = bairro;
     }
 
     public String getCidade() {
+
         return cidade;
     }
 
     public void setCidade(String cidade) {
+
         this.cidade = cidade;
     }
 
@@ -131,6 +146,7 @@ public class EnderecoModel implements Serializable {
     }
 
     public UsuarioModel getUsuarioModel() {
+
         return usuarioModel;
     }
 

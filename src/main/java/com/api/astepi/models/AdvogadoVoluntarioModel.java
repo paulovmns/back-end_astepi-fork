@@ -5,30 +5,20 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_ADVOGADOVOLUNTARIO")
 public class AdvogadoVoluntarioModel extends PessoaModel implements Serializable {
     private static final long serialVersionUID = 1l;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
+
+    @Column(nullable = true, unique = true, length = 255)
     private String numOAB;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(nullable = true, unique = true, length = 255)
     private String formacaoAcad;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(nullable = true, unique = true, length = 255)
     UsuarioModel usuarioModel;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     public String getNumOAB() {
         return numOAB;

@@ -29,8 +29,6 @@ public class AgendamentoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     private String sala;
 
-    @Column(nullable = false, unique = true, length = 255)
-    UsuarioModel usuarioModel;
 
     @Column(nullable = false, unique = true, length = 255)
     SecretariaModel secretariaModel;
@@ -41,9 +39,21 @@ public class AgendamentoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     DocumentoModel documentoModel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "usuario_agendamento_id")
+    private UsuarioModel usuarioAgendamento;
+
+    public UsuarioModel getUsuarioAgendamento() {
+        return usuarioAgendamento;
+    }
+
+    public void setUsuarioAgendamento(UsuarioModel usuarioAgendamento) {
+        this.usuarioAgendamento = usuarioAgendamento;
+    }
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioModel_id")
-    private UsuarioModel usuario;
+    private UsuarioModel usuarioModel;*/
 
 
     public UUID getId() {
@@ -94,17 +104,17 @@ public class AgendamentoModel implements Serializable {
         this.sala = sala;
     }
 
-    //public UsuarioModel getUsuarioModel() {
-        //return usuarioModel;
-   // }
+   /* public UsuarioModel getUsuarioModel() {
+        return usuarioModel;
+    }
 
-    //public void setUsuarioModel(UsuarioModel usuarioModel) {
-        //this.usuarioModel = usuarioModel;
-    //}
+    public void setUsuarioModel(UsuarioModel usuarioModel) {
+        this.usuarioModel = usuarioModel;
+    }
 
     public SecretariaModel getSecretariaModel() {
         return secretariaModel;
-    }
+    }*/
 
     public void setSecretariaModel(SecretariaModel secretariaModel) {
         this.secretariaModel = secretariaModel;

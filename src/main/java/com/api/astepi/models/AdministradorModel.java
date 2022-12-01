@@ -10,29 +10,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "TB_ADMINISTRADOR")
 public class AdministradorModel extends PessoaModel implements Serializable {
     private static final long serialVersionUID = 11;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(nullable = true, unique = true, length = 255)
     UsuarioModel usuarioModel;
 
 
-    //private List<UsuarioModel> usuarios;
 
-    @Override
-    public UUID getId() {
-        return id;
-    }
 
-    @Override
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
     /*public UsuarioModel getUsuarioModel() {
         return usuarioModel;

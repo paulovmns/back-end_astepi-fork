@@ -27,5 +27,6 @@ public interface UsuarioRepository extends JpaRepository<UsuarioModel, UUID> {
      * @param name
      * @return lista de clientes
      */
-    List<UsuarioModel> findByNomeOrderByNome(@Param("name") String name);
+   List<UsuarioModel> findByNomeOrderByNome(@Param("name") String name);
+
 }

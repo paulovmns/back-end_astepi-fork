@@ -43,9 +43,17 @@ public class EnderecoModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     private String estado;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioModel_id")
-    private UsuarioModel usuarioModel;
+    @ManyToOne
+    @JoinColumn(name = "usuario_endereco_id")
+    private UsuarioModel usuarioEndereco;
+
+    public UsuarioModel getUsuarioEndereco() {
+        return usuarioEndereco;
+    }
+
+    public void setUsuario_endereco(UsuarioModel usuarioEndereco) {
+        this.usuarioEndereco = usuarioEndereco;
+    }
 
 
     public UUID getId() {
@@ -143,15 +151,6 @@ public class EnderecoModel implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public UsuarioModel getUsuarioModel() {
-
-        return usuarioModel;
-    }
-
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
     }
 
     //public List<UsuarioModel> getUsuarioModel(){

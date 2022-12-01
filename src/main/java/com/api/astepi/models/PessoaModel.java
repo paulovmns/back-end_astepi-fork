@@ -41,7 +41,7 @@ public class PessoaModel implements Serializable {
     @Column(nullable = false, unique = true, length = 9)
     private String senha;
 
-    @Column(nullable = false)
+    @Column
     private LocalDateTime registrationDate;
 
 

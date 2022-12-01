@@ -13,16 +13,28 @@ public class FormularioModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
-    UsuarioModel usuarioModel;
 
     @Column(nullable = false, unique = true, length = 255)
     SecretariaModel secretariaModel;
 
+    @OneToOne(orphanRemoval = true)
+    @JoinTable(name = "tb_formulario_usuario_model",
+            joinColumns = @JoinColumn(name = "formulario_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_model_id"))
+    private UsuarioModel usuarioFormulario;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    public UsuarioModel getUsuarioFormulario() {
+        return usuarioFormulario;
+    }
+
+    public void setUsuarioFormulario(UsuarioModel usuarioFormulario) {
+        this.usuarioFormulario = usuarioFormulario;
+    }
+
+
+    /*@OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuarioModel_id")
-    private UsuarioModel usuario;
+    private UsuarioModel usuarioModel;*/
 
 
     public UUID getId() {
@@ -33,13 +45,6 @@ public class FormularioModel implements Serializable {
         this.id = id;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
-    }
-
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
 
     public SecretariaModel getSecretariaModel() {
         return secretariaModel;
@@ -48,4 +53,15 @@ public class FormularioModel implements Serializable {
     public void setSecretariaModel(SecretariaModel secretariaModel) {
         this.secretariaModel = secretariaModel;
     }
+/*
+    public UsuarioModel getUsuario() {
+        return usuarioModel;
+    }
+
+    public void setUsuario(UsuarioModel usuarioModel) {
+        this.usuarioModel = usuarioModel;
+    }
+
+
+ */
 }

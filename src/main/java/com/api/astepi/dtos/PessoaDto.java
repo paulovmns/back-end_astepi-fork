@@ -2,6 +2,7 @@ package com.api.astepi.dtos;
 
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class PessoaDto {
@@ -12,20 +13,19 @@ public class PessoaDto {
     @Size (max = 11)
     private String cpf;
 
-    @NotBlank
-    @Size(max = 11)
+    @NotNull
     private int celular;
 
     @NotBlank
     private String email;
 
-    @NotBlank
+    @NotNull
     private int matricula;
 
     @NotBlank
     private String cargo;
 
-    @NotBlank
+    @NotNull
     private boolean status;
 
     @NotBlank

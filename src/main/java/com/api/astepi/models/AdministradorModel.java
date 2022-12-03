@@ -11,12 +11,20 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class AdministradorModel extends PessoaModel implements Serializable {
-    private static final long serialVersionUID = 11;
+    private static final long serialVersionUID = 1L;
 
-    @Column(length = 10)
+    @Column(length = 50)
     private String sistema;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorUsuario")
     private List<UsuarioModel> usuario;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorAdvogadoVoluntario")
+    private List<AdvogadoVoluntarioModel> advogadoVoluntario;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorSecretario")
+    private List<SecretarioModel> secretario;
+
+
 
     public String getSistema() {
         return sistema;

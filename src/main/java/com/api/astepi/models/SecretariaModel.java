@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
 @Table(name = "TB_SECRETARIA")
 public class SecretariaModel implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,14 +20,18 @@ public class SecretariaModel implements Serializable {
     @Column(length = 255)
     private String procedimento;
 
-    //@Column(length = 255)
-    //FormularioModel formularioModel;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "secretariaFormulario")
+    private FormularioModel formulario;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "secretariaSecretario")
+    private List<SecretarioModel> secretario;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "secretaria_agendamento", joinColumns = {
             @JoinColumn(name = "secretaria_id")}, inverseJoinColumns = {
             @JoinColumn(name = "agendamento_id")})
     Set<AgendamentoModel> agendamentos = new HashSet<AgendamentoModel>();
+
 
     public UUID getId() {
         return id;
@@ -44,13 +49,21 @@ public class SecretariaModel implements Serializable {
         this.procedimento = procedimento;
     }
 
-    /*public FormularioModel getFormularioModel() {
-        return formularioModel;
+    public FormularioModel getFormulario() {
+        return formulario;
     }
 
-    public void setFormularioModel(FormularioModel formularioModel) {
-        this.formularioModel = formularioModel;
-    }*/
+    public void setFormulario(FormularioModel formulario) {
+        this.formulario = formulario;
+    }
+
+    public List<SecretarioModel> getSecretario() {
+        return secretario;
+    }
+
+    public void setSecretario(List<SecretarioModel> secretario) {
+        this.secretario = secretario;
+    }
 
     public Set<AgendamentoModel> getAgendamentos() {
         return agendamentos;
@@ -59,5 +72,4 @@ public class SecretariaModel implements Serializable {
     public void setAgendamentos(Set<AgendamentoModel> agendamentos) {
         this.agendamentos = agendamentos;
     }
-
 }

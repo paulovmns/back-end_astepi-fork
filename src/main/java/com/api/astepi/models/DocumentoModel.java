@@ -14,19 +14,12 @@ public class DocumentoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
-    private String nome;
-
-    //@Column(nullable = false, unique = true, length = 255)
-    //UsuarioModel usuarioModel;
-
-   // @Column(nullable = false, unique = true, length = 255)
-    //AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    @Column(unique = true, length = 255)
+    private String nomeDoc;
 
     @ManyToOne
     @JoinColumn(name = "agendamento_documento_id")
     private AgendamentoModel agendamentoDocumento;
-
 
     public UUID getId() {
         return id;
@@ -36,30 +29,13 @@ public class DocumentoModel implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNomeDoc() {
+        return nomeDoc;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeDoc(String nomeDoc) {
+        this.nomeDoc = nomeDoc;
     }
-
-    //public UsuarioModel getUsuarioModel() {
-   //     return usuarioModel;
-   // }
-
-    //public void setUsuarioModel(UsuarioModel usuarioModel) {
-        //this.usuarioModel = usuarioModel;
-    //}
-
-    //public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        //return advogadoVoluntarioModel;
-    //}
-
-   // public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-       // this.advogadoVoluntarioModel = advogadoVoluntarioModel;
-   // }
-
 
     public AgendamentoModel getAgendamentoDocumento() {
         return agendamentoDocumento;
@@ -68,5 +44,4 @@ public class DocumentoModel implements Serializable {
     public void setAgendamentoDocumento(AgendamentoModel agendamentoDocumento) {
         this.agendamentoDocumento = agendamentoDocumento;
     }
-
 }

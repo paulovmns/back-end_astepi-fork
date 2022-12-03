@@ -2,20 +2,26 @@ package com.api.astepi.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "TB_FORMULARIO")
 public class FormularioModel implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Column(length = 255)
+    private String titulo;
 
-    /*@Column(length = 255)
-    SecretariaModel secretariaModel;*/
+    @OneToOne(orphanRemoval = true)
+    @JoinTable(name = "tb_formulario_secretaria_model",
+            joinColumns = @JoinColumn(name = "formulario_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "secretaria_model_id"))
+    private SecretariaModel secretariaFormulario;
 
     @OneToOne(orphanRemoval = true)
     @JoinTable(name = "tb_formulario_usuario_model",
@@ -31,11 +37,21 @@ public class FormularioModel implements Serializable {
         this.usuarioFormulario = usuarioFormulario;
     }
 
+    public SecretariaModel getSecretariaFormulario() {
+        return secretariaFormulario;
+    }
 
-    /*@OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioModel_id")
-    private UsuarioModel usuarioModel;*/
+    public void setSecretariaFormulario(SecretariaModel secretariaFormulario) {
+        this.secretariaFormulario = secretariaFormulario;
+    }
 
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
     public UUID getId() {
         return id;
@@ -45,23 +61,4 @@ public class FormularioModel implements Serializable {
         this.id = id;
     }
 
-
-   /* public SecretariaModel getSecretariaModel() {
-        return secretariaModel;
-    }
-
-    public void setSecretariaModel(SecretariaModel secretariaModel) {
-        this.secretariaModel = secretariaModel;
-    }
-/*
-    public UsuarioModel getUsuario() {
-        return usuarioModel;
-    }
-
-    public void setUsuario(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
-
-
- */
 }

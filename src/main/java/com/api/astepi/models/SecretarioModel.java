@@ -8,27 +8,55 @@ import java.util.UUID;
 @Entity
 public class SecretarioModel extends PessoaModel implements Serializable {
 
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
-    @Column(nullable = true, unique = true, length = 255)
-    UsuarioModel usuarioModel;
+    @Column(length = 255)
+    private String atribuicao;
 
-    @Column(nullable = true, unique = true, length = 255)
-    SecretariaModel secretariaModel;
+    @ManyToOne
+    @JoinColumn(name = "administrador_secretario_id")
+    private AdministradorModel administradorSecretario;
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    @ManyToOne
+    @JoinColumn(name = "usuario_secretario_id")
+    private UsuarioModel usuarioSecretario;
+
+    @ManyToOne
+    @JoinColumn(name = "secretaria_secretario_id")
+    private SecretariaModel secretariaSecretario;
+
+    public String getAtribuicao() {
+        return atribuicao;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
+    public void setAtribuicao(String atribuicao) {
+        this.atribuicao = atribuicao;
     }
 
-    public SecretariaModel getSecretariaModel() {
-        return secretariaModel;
+    public AdministradorModel getAdministradorSecretario() {
+        return administradorSecretario;
     }
 
-    public void setSecretariaModel(SecretariaModel secretariaModel) {
-        this.secretariaModel = secretariaModel;
+    public void setAdministradorSecretario(AdministradorModel administradorSecretario) {
+        this.administradorSecretario = administradorSecretario;
     }
+
+    public UsuarioModel getUsuarioSecretario() {
+        return usuarioSecretario;
+    }
+
+    public void setUsuarioSecretario(UsuarioModel usuarioSecretario) {
+        this.usuarioSecretario = usuarioSecretario;
+    }
+
+    public SecretariaModel getSecretariaSecretario() {
+        return secretariaSecretario;
+    }
+
+    public void setSecretariaSecretario(SecretariaModel secretariaSecretario) {
+        this.secretariaSecretario = secretariaSecretario;
+    }
+
+
+
 }

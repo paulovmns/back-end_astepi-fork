@@ -1,6 +1,6 @@
 package com.api.astepi.models;
 
-import  org.hibernate.annotations.DiscriminatorOptions ;
+import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,19 +10,18 @@ import java.util.UUID;
 import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
+
 @Entity
 @Table(name = "TB_PESSOA")
-@Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 15, name = "TYPE")
-@DiscriminatorValue(value="PESSOAMODEL")
+
 public class PessoaModel implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column( length = 255)
+    @Column(length = 255)
     private String nome;
 
     @Column(unique = true, length = 14)
@@ -34,7 +33,7 @@ public class PessoaModel implements Serializable {
     @Column(length = 50)
     private String email;
 
-    @Column(unique = false, length = 10)
+    @Column(length = 10)
     private int matricula;
 
     @Column(length = 50)

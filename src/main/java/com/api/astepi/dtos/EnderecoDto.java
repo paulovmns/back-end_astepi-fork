@@ -31,9 +31,6 @@ public class EnderecoDto {
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String estado;
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    UsuarioDto usuarioDto;
-
     public String getRua() {
         return rua;
     }
@@ -98,11 +95,4 @@ public class EnderecoDto {
         this.estado = estado;
     }
 
-    public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
-    }
-
-    public void setUsuarioDto(UsuarioDto usuarioDto) {
-        this.usuarioDto = usuarioDto;
-    }
 }

@@ -8,12 +8,8 @@ import java.util.Date;
 
 public class AdministradorDto {
 
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String sistema;
-
-
-
 
     public String getSistema() {
         return sistema;

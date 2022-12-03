@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 public class PessoaDto {
-    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true) //validações para verificar se não estar vindo null ou número vázio.
     private String nome;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @Size (max = 11)
     private String cpf;
 
     @JsonIgnoreProperties(ignoreUnknown = true)

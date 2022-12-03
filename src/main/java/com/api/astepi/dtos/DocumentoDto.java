@@ -7,35 +7,13 @@ import javax.validation.constraints.NotBlank;
 public class DocumentoDto {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private String nome;
+    private String nomeDoc;
 
-  /* @NotBlank
-    UsuarioDto usuarioDto;
-
-    @NotBlank
-    AdvogadoVoluntarioDto advogadoVoluntarioDto;*/
-
-    public String getNome() {
-        return nome;
+    public String getNomeDoc() {
+        return nomeDoc;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeDoc(String nomeDoc) {
+        this.nomeDoc = nomeDoc;
     }
-
-   // public UsuarioDto getUsuarioDto() {
-        //return usuarioDto;
-   // }
-
-    //public void setUsuarioDto(UsuarioDto usuarioDto) {
-        //this.usuarioDto = usuarioDto;
-  //  }
-
-   // public AdvogadoVoluntarioDto getAdvogadoVoluntarioDto()
-        //return advogadoVoluntarioDto;
-   // }
-
-    //public void setAdvogadoVoluntarioDto(AdvogadoVoluntarioDto advogadoVoluntarioDto) {
-       // this.advogadoVoluntarioDto = advogadoVoluntarioDto;
-    //}
 }

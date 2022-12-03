@@ -14,21 +14,17 @@ public class UsuarioDto {
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataNascimento;
 
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String profissao;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private boolean estadoCivil;
+    private String estadoCivil;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String nacionalidade;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String naturalidade;
-
-    /*@NotBlank
-    FormularioDto formularioDto;*/
 
     public Date getDataNascimento() {
         return dataNascimento;
@@ -46,11 +42,11 @@ public class UsuarioDto {
         this.profissao = profissao;
     }
 
-    public boolean isEstadoCivil() {
+    public String getEstadoCivil() {
         return estadoCivil;
     }
 
-    public void setEstadoCivil(boolean estadoCivil) {
+    public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
 
@@ -69,12 +65,4 @@ public class UsuarioDto {
     public void setNaturalidade(String naturalidade) {
         this.naturalidade = naturalidade;
     }
-
-    // public FormularioDto getFormularioDto() {
-    // return formularioDto;
-    //}
-
-    // public void setFormularioDto(FormularioDto formularioDto) {
-    //this.formularioDto = formularioDto;
-    //}
 }

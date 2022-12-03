@@ -5,27 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.validation.constraints.NotBlank;
 
 public class FormularioDto {
-   /* @JsonIgnoreProperties(ignoreUnknown = true)
-    UsuarioDto usuarioDto;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    SecretariaDto secretariaDto;
+    private String titulo;
 
-    public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setUsuarioDto(UsuarioDto usuarioDto) {
-        this.usuarioDto = usuarioDto;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
-
-    public SecretariaDto getSecretariaDto() {
-        return secretariaDto;
-    }
-
-    public void setSecretariaDto(SecretariaDto secretariaDto) {
-        this.secretariaDto = secretariaDto;
-    }
-
-    */
 }

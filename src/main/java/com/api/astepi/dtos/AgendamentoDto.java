@@ -1,36 +1,39 @@
 package com.api.astepi.dtos;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AgendamentoDto {
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int dia;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int mes;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int ano;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int horario;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String sala;
-
-    @NotBlank
+/*
+    @JsonIgnoreProperties(ignoreUnknown = true)
     UsuarioDto usuarioDto;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     SecretariaDto secretariaDto;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     EnderecoDto enderecoDto;
 
-    @NotBlank
-    DocumentoDto documentoDto;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    DocumentoDto documentoDto;*/
 
     public int getDia() {
         return dia;
@@ -71,7 +74,7 @@ public class AgendamentoDto {
     public void setSala(String sala) {
         this.sala = sala;
     }
-
+/*
     public UsuarioDto getUsuarioDto() {
         return usuarioDto;
     }
@@ -102,5 +105,5 @@ public class AgendamentoDto {
 
     public void setDocumentoDto(DocumentoDto documentoDto) {
         this.documentoDto = documentoDto;
-    }
+    }*/
 }

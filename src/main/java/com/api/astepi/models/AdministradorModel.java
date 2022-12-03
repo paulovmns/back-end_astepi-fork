@@ -13,27 +13,24 @@ import javax.persistence.OneToMany;
 public class AdministradorModel extends PessoaModel implements Serializable {
     private static final long serialVersionUID = 11;
 
+    @Column(length = 10)
+    private String sistema;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorUsuario")
+    private List<UsuarioModel> usuario;
 
-    @Column(nullable = true, unique = true, length = 255)
-    UsuarioModel usuarioModel;
-
-
-
-
-
-    /*public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public String getSistema() {
+        return sistema;
     }
-     */
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
-    /*public List<UsuarioModel> getUsuarioModel(){
-        return usuarios;
-    }
-    public void setUsuarioModel(List<UsuarioModel> usuarios) {
-        this.usuarios = usuarios;
-    }*/
 
+    public void setSistema(String sistema) {
+        this.sistema = sistema;
+    }
 
+    public List<UsuarioModel> getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(List<UsuarioModel> usuario) {
+        this.usuario = usuario;
+    }
 }

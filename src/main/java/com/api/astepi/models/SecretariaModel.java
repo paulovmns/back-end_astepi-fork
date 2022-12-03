@@ -3,6 +3,8 @@ package com.api.astepi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -14,8 +16,17 @@ public class SecretariaModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
-    FormularioModel formularioModel;
+    @Column(length = 255)
+    private String procedimento;
+
+    //@Column(length = 255)
+    //FormularioModel formularioModel;
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "secretaria_agendamento", joinColumns = {
+            @JoinColumn(name = "secretaria_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "agendamento_id")})
+    Set<AgendamentoModel> agendamentos = new HashSet<AgendamentoModel>();
 
     public UUID getId() {
         return id;
@@ -25,11 +36,28 @@ public class SecretariaModel implements Serializable {
         this.id = id;
     }
 
-    public FormularioModel getFormularioModel() {
+    public String getProcedimento() {
+        return procedimento;
+    }
+
+    public void setProcedimento(String procedimento) {
+        this.procedimento = procedimento;
+    }
+
+    /*public FormularioModel getFormularioModel() {
         return formularioModel;
     }
 
     public void setFormularioModel(FormularioModel formularioModel) {
         this.formularioModel = formularioModel;
+    }*/
+
+    public Set<AgendamentoModel> getAgendamentos() {
+        return agendamentos;
     }
+
+    public void setAgendamentos(Set<AgendamentoModel> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
+
 }

@@ -1,17 +1,19 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
 
 public class DocumentoDto {
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nome;
 
-    @NotBlank
+  /* @NotBlank
     UsuarioDto usuarioDto;
 
     @NotBlank
-    AdvogadoVoluntarioDto advogadoVoluntarioDto;
+    AdvogadoVoluntarioDto advogadoVoluntarioDto;*/
 
     public String getNome() {
         return nome;
@@ -21,19 +23,19 @@ public class DocumentoDto {
         this.nome = nome;
     }
 
-    public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
-    }
+   // public UsuarioDto getUsuarioDto() {
+        //return usuarioDto;
+   // }
 
-    public void setUsuarioDto(UsuarioDto usuarioDto) {
-        this.usuarioDto = usuarioDto;
-    }
+    //public void setUsuarioDto(UsuarioDto usuarioDto) {
+        //this.usuarioDto = usuarioDto;
+  //  }
 
-    public AdvogadoVoluntarioDto getAdvogadoVoluntarioDto() {
-        return advogadoVoluntarioDto;
-    }
+   // public AdvogadoVoluntarioDto getAdvogadoVoluntarioDto()
+        //return advogadoVoluntarioDto;
+   // }
 
-    public void setAdvogadoVoluntarioDto(AdvogadoVoluntarioDto advogadoVoluntarioDto) {
-        this.advogadoVoluntarioDto = advogadoVoluntarioDto;
-    }
+    //public void setAdvogadoVoluntarioDto(AdvogadoVoluntarioDto advogadoVoluntarioDto) {
+       // this.advogadoVoluntarioDto = advogadoVoluntarioDto;
+    //}
 }

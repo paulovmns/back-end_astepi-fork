@@ -1,30 +1,22 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class SecretarioDto {
 
-    @NotBlank
-    UsuarioDto usuarioDto;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String procedimento;
 
-    @NotBlank
-    SecretariaDto secretariaDto;
-
-    public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
+    public String getProcedimento() {
+        return procedimento;
     }
 
-    public void setUsuarioDto(UsuarioDto usuarioDto) {
-        this.usuarioDto = usuarioDto;
-    }
-
-    public SecretariaDto getSecretariaDto() {
-        return secretariaDto;
-    }
-
-    public void setSecretariaDto(SecretariaDto secretariaDto) {
-        this.secretariaDto = secretariaDto;
+    public void setProcedimento(String procedimento) {
+        this.procedimento = procedimento;
     }
 }

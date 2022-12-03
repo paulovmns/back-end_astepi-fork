@@ -1,37 +1,39 @@
 package com.api.astepi.dtos;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class PessoaDto {
-    @NotBlank //validações para verificar se não estar vindo null ou número vázio.
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nome;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Size (max = 11)
     private String cpf;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int celular;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String email;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int matricula;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String cargo;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private boolean status;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nomeLogin;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String senha;
 
     public String getNome() {

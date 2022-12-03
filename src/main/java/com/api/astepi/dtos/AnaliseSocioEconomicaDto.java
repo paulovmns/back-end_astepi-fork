@@ -4,16 +4,17 @@ package com.api.astepi.dtos;
 import com.api.astepi.models.AdvogadoVoluntarioModel;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AnaliseSocioEconomicaDto {
 
-    @NotBlank
+    @NotNull
     private int numeroDependentes;
 
-    @NotBlank
+    @NotNull
     private int qtdDesempregados;
 
-    @NotBlank
+    @NotNull
     private double rendaFamiliar;
 
     @NotBlank
@@ -25,19 +26,19 @@ public class AnaliseSocioEconomicaDto {
     @NotBlank
     private String profissaoCompanheiro;
 
-    @NotBlank
+    @NotNull
     private double despesaAluguel;
 
-    @NotBlank
+    @NotNull
     private double despesaColegio;
 
-    @NotBlank
+    @NotNull
     private double outrasDespesas;
 
-    @NotBlank
+    @NotNull
     private boolean tipoAtendimento;
 
-    @NotBlank
+    @NotNull
     private boolean portaDeEntrada;
 
     @NotBlank

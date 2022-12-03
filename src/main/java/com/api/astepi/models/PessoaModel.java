@@ -1,12 +1,20 @@
 package com.api.astepi.models;
 
+import  org.hibernate.annotations.DiscriminatorOptions ;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static javax.persistence.DiscriminatorType.STRING;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+
 @Entity
 @Table(name = "TB_PESSOA")
+@Inheritance(strategy = SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, length = 15, name = "TYPE")
+@DiscriminatorValue(value="PESSOAMODEL")
 public class PessoaModel implements Serializable {
     private static final long serialVersionUID = 1l;
 
@@ -14,31 +22,31 @@ public class PessoaModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column( length = 255)
     private String nome;
 
-    @Column(nullable = false, unique = true, length = 14)
+    @Column(unique = true, length = 14)
     private String cpf;
 
-    @Column(nullable = false, length = 11)
+    @Column(length = 11)
     private int celular;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String email;
 
-    @Column(nullable = false, unique = true, length = 10)
+    @Column(unique = false, length = 10)
     private int matricula;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50)
     private String cargo;
 
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     private boolean status;
 
-    @Column(nullable = false, length = 25)
+    @Column(length = 25)
     private String nomeLogin;
 
-    @Column(nullable = false, unique = true, length = 9)
+    @Column(length = 9)
     private String senha;
 
     @Column

@@ -3,6 +3,9 @@ package com.api.astepi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -14,30 +17,34 @@ public class AgendamentoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, length = 2)
+    @Column(length = 2)
     private int dia;
 
-    @Column(nullable = false, length = 2)
+    @Column(length = 2)
     private int mes;
 
-    @Column(nullable = false, length = 4)
+    @Column(length = 4)
     private int ano;
 
-    @Column(nullable = false, length = 4)
+    @Column(length = 4)
     private int horario;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String sala;
 
 
-    @Column(nullable = false, unique = true, length = 255)
-    SecretariaModel secretariaModel;
+    @ManyToMany(mappedBy = "agendamentos", cascade = { CascadeType.ALL })
+    private Set<SecretariaModel> endereco= new HashSet<SecretariaModel>();
 
-    @Column(nullable = false, unique = true, length = 255)
-    EnderecoModel enderecoModel;
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "agendamento_endereco", joinColumns = {
+                    @JoinColumn(name = "agendamento_id")}, inverseJoinColumns = {
+                    @JoinColumn(name = "endereco_id")})
+    Set<EnderecoModel> enderecos = new HashSet<EnderecoModel>();
 
-    @Column(nullable = false, unique = true, length = 255)
-    DocumentoModel documentoModel;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "agendamentoDocumento")
+    private List<DocumentoModel> documento;
 
     @ManyToOne
     @JoinColumn(name = "usuario_agendamento_id")
@@ -107,32 +114,34 @@ public class AgendamentoModel implements Serializable {
    /* public UsuarioModel getUsuarioModel() {
         return usuarioModel;
     }
-
     public void setUsuarioModel(UsuarioModel usuarioModel) {
         this.usuarioModel = usuarioModel;
     }
-
     public SecretariaModel getSecretariaModel() {
         return secretariaModel;
     }*/
 
-    public void setSecretariaModel(SecretariaModel secretariaModel) {
-        this.secretariaModel = secretariaModel;
+    public Set<SecretariaModel> getEndereco() {
+        return endereco;
     }
 
-    public EnderecoModel getEnderecoModel() {
-        return enderecoModel;
+    public void setEndereco(Set<SecretariaModel> endereco) {
+        this.endereco = endereco;
     }
 
-    public void setEnderecoModel(EnderecoModel enderecoModel) {
-        this.enderecoModel = enderecoModel;
+    public Set<EnderecoModel> getEnderecos() {
+        return enderecos;
     }
 
-    public DocumentoModel getDocumentoModel() {
-        return documentoModel;
+    public void setEnderecos(Set<EnderecoModel> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public void setDocumentoModel(DocumentoModel documentoModel) {
-        this.documentoModel = documentoModel;
+    public List<DocumentoModel> getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(List<DocumentoModel> documento) {
+        this.documento = documento;
     }
 }

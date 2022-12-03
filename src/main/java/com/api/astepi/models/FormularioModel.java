@@ -14,8 +14,8 @@ public class FormularioModel implements Serializable {
     private UUID id;
 
 
-    @Column(nullable = false, unique = true, length = 255)
-    SecretariaModel secretariaModel;
+    /*@Column(length = 255)
+    SecretariaModel secretariaModel;*/
 
     @OneToOne(orphanRemoval = true)
     @JoinTable(name = "tb_formulario_usuario_model",
@@ -46,7 +46,7 @@ public class FormularioModel implements Serializable {
     }
 
 
-    public SecretariaModel getSecretariaModel() {
+   /* public SecretariaModel getSecretariaModel() {
         return secretariaModel;
     }
 

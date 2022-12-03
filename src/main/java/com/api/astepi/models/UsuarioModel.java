@@ -1,5 +1,7 @@
 package com.api.astepi.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,24 +11,29 @@ import java.util.UUID;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import static javax.persistence.DiscriminatorType.STRING;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+
 @Entity
+@DiscriminatorValue(value="USUARIOMODEL")
 public class UsuarioModel extends PessoaModel  {
     private static final long serialVersionUID = 11;
 
 
-    @Column(nullable = true, unique = true, length = 10)
+    @Column(length = 10)
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataNascimento;
 
-    @Column(nullable = true, unique = true, length = 50)
+    @Column(length = 50)
     private String profissao;
 
-    @Column(nullable = true, unique = true, length =25)
+    @Column(length =25)
     private boolean estadoCivil;
 
-    @Column(nullable = true, unique = true, length = 25)
+    @Column(length = 25)
     private String nacionalidade;
 
-    @Column(nullable = true, unique = true, length = 25)
+    @Column(length = 25)
     private String naturalidade;
 
 
@@ -39,8 +46,17 @@ public class UsuarioModel extends PessoaModel  {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "usuarioFormulario")
     private FormularioModel formulario;
 
+    @ManyToOne
+    @JoinColumn(name = "administrador_usuario_id")
+    private AdministradorModel administradorUsuario;
 
+    public AdministradorModel getAdministradorUsuario() {
+        return administradorUsuario;
+    }
 
+    public void setAdministradorUsuario(AdministradorModel administradorUsuario) {
+        this.administradorUsuario = administradorUsuario;
+    }
 
 
     public Date getDataNascimento() {
@@ -91,7 +107,7 @@ public class UsuarioModel extends PessoaModel  {
         this.endereco = endereco;
     }
 
-    /*public List<AgendamentoModel> getAgendamento() {
+    public List<AgendamentoModel> getAgendamento() {
         return agendamento;
     }
 
@@ -99,11 +115,11 @@ public class UsuarioModel extends PessoaModel  {
         this.agendamento = agendamento;
     }
 
-    public List<FormularioModel> getFormulario() {
+    public FormularioModel getFormulario() {
         return formulario;
     }
 
-    public void setFormulario(List<FormularioModel> formulario) {
+    public void setFormulario(FormularioModel formulario) {
         this.formulario = formulario;
-    }*/
+    }
 }

@@ -1,12 +1,14 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
 
 public class FormularioDto {
-    @NotBlank
+   /* @JsonIgnoreProperties(ignoreUnknown = true)
     UsuarioDto usuarioDto;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     SecretariaDto secretariaDto;
 
     public UsuarioDto getUsuarioDto() {
@@ -24,4 +26,6 @@ public class FormularioDto {
     public void setSecretariaDto(SecretariaDto secretariaDto) {
         this.secretariaDto = secretariaDto;
     }
+
+    */
 }

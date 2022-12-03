@@ -1,34 +1,37 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class EnderecoDto {
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String rua;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int numero;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String cep;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String complemento;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int celular;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String bairro;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String cidade;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String estado;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     UsuarioDto usuarioDto;
 
     public String getRua() {

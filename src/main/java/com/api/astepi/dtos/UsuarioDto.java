@@ -1,26 +1,34 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.Nullable;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 public class UsuarioDto {
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataNascimento;
 
-    @NotBlank
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String profissao;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private boolean estadoCivil;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nacionalidade;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String naturalidade;
 
-    @NotBlank
-    //FormularioDto formularioDto;
+    /*@NotBlank
+    FormularioDto formularioDto;*/
 
     public Date getDataNascimento() {
         return dataNascimento;
@@ -62,11 +70,11 @@ public class UsuarioDto {
         this.naturalidade = naturalidade;
     }
 
-   // public FormularioDto getFormularioDto() {
-       // return formularioDto;
+    // public FormularioDto getFormularioDto() {
+    // return formularioDto;
     //}
 
-   // public void setFormularioDto(FormularioDto formularioDto) {
-        //this.formularioDto = formularioDto;
+    // public void setFormularioDto(FormularioDto formularioDto) {
+    //this.formularioDto = formularioDto;
     //}
 }

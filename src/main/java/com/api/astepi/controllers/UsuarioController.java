@@ -36,11 +36,11 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuarioModel));
     }
     @GetMapping
-    public ResponseEntity<Page<UsuarioModel>> getAllPessoa(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Page<UsuarioModel>> getAllUsuario(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.findAll(pageable));
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOnePessoa(@PathVariable (value = "id") UUID id){
+    public ResponseEntity<Object> getOneUsuario(@PathVariable (value = "id") UUID id){
         Optional<UsuarioModel> usuarioModelOptional = usuarioService.finByID(id);
         if(!usuarioModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
@@ -51,7 +51,7 @@ public class UsuarioController {
     public ResponseEntity<Object> deleteUsuario(@PathVariable (value = "id")UUID id){
         Optional<UsuarioModel> usuarioModelOptional = usuarioService.finByID(id);
         if(!usuarioModelOptional .isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pessoa not found.");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }
         usuarioService.delete(usuarioModelOptional .get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuario deleted successfully.");
@@ -63,7 +63,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }
         var usuarioModel = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioDto, usuarioDto);
+        BeanUtils.copyProperties(usuarioDto, usuarioModel);
         usuarioModel.setId(usuarioModelOptional.get().getId());
         usuarioModel.setRegistrationDate(usuarioModelOptional.get().getRegistrationDate());
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuarioModel));

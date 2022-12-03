@@ -70,6 +70,7 @@ public class EnderecoController {
         var enderecoModel = new EnderecoModel();
         BeanUtils.copyProperties(enderecoDto, enderecoModel);
         enderecoModel.setId(enderecoModelOptional.get().getId());
+        //enderecoModel.setRegistrationDate(enderecoModelOptional.get().getRegistrationDate());
         return ResponseEntity.status(HttpStatus.OK).body(enderecoService.save(enderecoModel));
     }
     

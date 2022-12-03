@@ -3,6 +3,8 @@ package com.api.astepi.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,44 +18,40 @@ public class EnderecoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String rua;
 
-    @Column(nullable = false, length = 15)
+    @Column(length = 15)
     private int numero;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String cep;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String complemento;
 
-    @Column(nullable = false, length = 15)
+    @Column(length = 15)
     private int telefoneFixo;
 
-    @Column(nullable = false, length = 15)
+    @Column(length = 15)
     private int celular;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String bairro;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String cidade;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 255)
     private String estado;
 
     @ManyToOne
     @JoinColumn(name = "usuario_endereco_id")
     private UsuarioModel usuarioEndereco;
 
-    public UsuarioModel getUsuarioEndereco() {
-        return usuarioEndereco;
-    }
+    @ManyToMany(mappedBy = "enderecos", cascade = { CascadeType.ALL })
+    private Set<AgendamentoModel> agendamentos= new HashSet<AgendamentoModel>();
 
-    public void setUsuario_endereco(UsuarioModel usuarioEndereco) {
-        this.usuarioEndereco = usuarioEndereco;
-    }
 
 
     public UUID getId() {
@@ -153,12 +151,24 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    //public List<UsuarioModel> getUsuarioModel(){
-       // return usuarios;
-    //}
-    //public void setUsuarioModel(List<UsuarioModel> usuarios) {
-       // this.usuarios = usuarios;
-   // }
+
+    public UsuarioModel getUsuarioEndereco() {
+
+        return usuarioEndereco;
+    }
+
+    public void setUsuario_endereco(UsuarioModel usuarioEndereco) {
+
+        this.usuarioEndereco = usuarioEndereco;
+    }
+
+    public Set<AgendamentoModel> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(Set<AgendamentoModel> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
 
     public boolean comprovanteResid() {
         String entregue = "N";

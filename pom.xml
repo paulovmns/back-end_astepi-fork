@@ -9,12 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>astepi</artifactId>
+	<artifactId>springboot-heroku-astepi-1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>astepi</name>
+	<name>springboot-heroku-astepi-1</name>
 	<description>Deploy Heroku Astepi Spring Boot</description>
 	<properties>
-		<java.version>19</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,14 +30,12 @@
 	</dependencies>
 
 	<build>
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <configuration>
-        <source>19</source>
-        <target>19</target>
-    </configuration>
-</plugin>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>

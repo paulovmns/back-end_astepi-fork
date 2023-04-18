@@ -14,9 +14,9 @@
 	<name>springboot-heroku-astepi-1</name>
 	<description>Deploy Heroku Astepi Spring Boot</description>
 	<properties>
-    <maven.compiler.source>19</maven.compiler.source>
-    <maven.compiler.target>19</maven.compiler.target>
-		<java.version>19</java.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

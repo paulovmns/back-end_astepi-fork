@@ -5,8 +5,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 public class AgendamentoDto {
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private UUID usuarioId;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private int dia;
@@ -22,16 +26,23 @@ public class AgendamentoDto {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String sala;
-/*
+
+
+    public UUID getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(UUID usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
+    /*
     @JsonIgnoreProperties(ignoreUnknown = true)
     UsuarioDto usuarioDto;
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     SecretariaDto secretariaDto;
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     EnderecoDto enderecoDto;
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     DocumentoDto documentoDto;*/
 
@@ -78,31 +89,24 @@ public class AgendamentoDto {
     public UsuarioDto getUsuarioDto() {
         return usuarioDto;
     }
-
     public void setUsuarioDto(UsuarioDto usuarioDto) {
         this.usuarioDto = usuarioDto;
     }
-
     public SecretariaDto getSecretariaDto() {
         return secretariaDto;
     }
-
     public void setSecretariaDto(SecretariaDto secretariaDto) {
         this.secretariaDto = secretariaDto;
     }
-
     public EnderecoDto getEnderecoDto() {
         return enderecoDto;
     }
-
     public void setEnderecoDto(EnderecoDto enderecoDto) {
         this.enderecoDto = enderecoDto;
     }
-
     public DocumentoDto getDocumentoDto() {
         return documentoDto;
     }
-
     public void setDocumentoDto(DocumentoDto documentoDto) {
         this.documentoDto = documentoDto;
     }*/

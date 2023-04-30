@@ -4,8 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 public class EnderecoDto {
+
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private UUID usuarioId;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String rua;
@@ -30,6 +35,14 @@ public class EnderecoDto {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String estado;
+
+    public UUID getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(UUID usuarioId) {
+        this.usuarioId = usuarioId;
+    }
 
     public String getRua() {
         return rua;

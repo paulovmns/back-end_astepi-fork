@@ -30,7 +30,7 @@ public class EnderecoService {
         return enderecoRepository.findAll(pageable);
     }
 
-    public Optional<EnderecoModel> finByID(UUID id) {
+    public Optional<EnderecoModel> findByID(UUID id) {
         return enderecoRepository.findById(id);
     }
 

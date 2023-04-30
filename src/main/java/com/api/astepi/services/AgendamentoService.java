@@ -27,7 +27,7 @@ public class AgendamentoService {
         return agendamentoRepository.findAll(pageable);
     }
 
-    public Optional<AgendamentoModel> finByID(UUID id) {
+    public Optional<AgendamentoModel> findByID(UUID id) {
         return agendamentoRepository.findById(id);
     }
 

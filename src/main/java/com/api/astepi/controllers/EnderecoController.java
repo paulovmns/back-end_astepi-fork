@@ -1,12 +1,17 @@
 package com.api.astepi.controllers;
 
 
+import com.api.astepi.dtos.AgendamentoDto;
 import com.api.astepi.dtos.AnaliseSocioEconomicaDto;
 import com.api.astepi.dtos.EnderecoDto;
+import com.api.astepi.models.AgendamentoModel;
 import com.api.astepi.models.AnaliseSocioEconomicaModel;
 import com.api.astepi.models.EnderecoModel;
+import com.api.astepi.models.UsuarioModel;
+import com.api.astepi.services.AgendamentoService;
 import com.api.astepi.services.AnaliseSocioEconomicaService;
 import com.api.astepi.services.EnderecoService;
+import com.api.astepi.services.UsuarioService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,10 +29,12 @@ import java.util.UUID;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/enderecos")
 public class EnderecoController {
-    final EnderecoService enderecoService;
+    private final EnderecoService enderecoService;
+    private final UsuarioService usuarioService;
 
-    public EnderecoController(EnderecoService enderecoService) {
+    public EnderecoController(EnderecoService enderecoService, UsuarioService usuarioService) {
         this.enderecoService = enderecoService;
+        this.usuarioService = usuarioService;
     }
 
     @PostMapping
@@ -44,7 +51,7 @@ public class EnderecoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneEndereco(@PathVariable (value = "id") UUID id){
-        Optional<EnderecoModel> enderecoModelOptional = enderecoService.finByID(id);
+        Optional<EnderecoModel> enderecoModelOptional = enderecoService.findByID(id);
         if(!enderecoModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco not found.");
         }
@@ -53,7 +60,7 @@ public class EnderecoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteEndereco(@PathVariable (value = "id")UUID id){
-        Optional<EnderecoModel> enderecoModelOptional = enderecoService.finByID(id);
+        Optional<EnderecoModel> enderecoModelOptional = enderecoService.findByID(id);
         if(!enderecoModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco not found.");
         }
@@ -62,15 +69,27 @@ public class EnderecoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateEndereco(@PathVariable(value = "id")UUID id,@RequestBody @Valid EnderecoDto enderecoDto){
-        Optional<EnderecoModel> enderecoModelOptional = enderecoService.finByID(id);
+    public ResponseEntity<Object> updateEndereco(@PathVariable(value = "id")UUID id, @RequestBody @Valid EnderecoDto enderecoDto){
+        Optional<EnderecoModel> enderecoModelOptional = enderecoService.findByID(id);
         if (!enderecoModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereco not found.");
         }
-        var enderecoModel = new EnderecoModel();
-        BeanUtils.copyProperties(enderecoDto, enderecoModel);
-        enderecoModel.setId(enderecoModelOptional.get().getId());
-        //enderecoModel.setRegistrationDate(enderecoModelOptional.get().getRegistrationDate());
+
+        // Atualiza as informações do endereco
+        EnderecoModel enderecoModel = enderecoModelOptional.get();
+        BeanUtils.copyProperties(enderecoDto, enderecoModel, "id");
+        enderecoModel.setId(id);
+
+        // Verifica se o usuário foi especificado na requisição e atualiza as informações do usuário associado
+        if (enderecoDto.getUsuarioId() != null) {
+            Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(enderecoDto.getUsuarioId());
+            if (!usuarioModelOptional.isPresent()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuário não encontrado.");
+            }
+            UsuarioModel usuarioModel = usuarioModelOptional.get();
+            enderecoModel.setUsuario(usuarioModel);
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(enderecoService.save(enderecoModel));
     }
     

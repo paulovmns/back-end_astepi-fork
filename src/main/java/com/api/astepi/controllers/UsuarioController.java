@@ -1,10 +1,13 @@
 package com.api.astepi.controllers;
 
 
+import com.api.astepi.dtos.AgendamentoDto;
+import com.api.astepi.dtos.EnderecoDto;
 import com.api.astepi.dtos.UsuarioDto;
 import com.api.astepi.models.UsuarioModel;
 import com.api.astepi.services.UsuarioService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,18 +19,34 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/usuarios")
 public class UsuarioController {
-    final UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
 
+    @Autowired
     public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
+
+    @PostMapping("/{usuarioId}/agendamentos")
+    public ResponseEntity<Object> addAgendamento(@PathVariable UUID usuarioId, @RequestBody @Valid AgendamentoDto agendamentoDto) {
+        usuarioService.addAgendamento(usuarioId, agendamentoDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{usuarioId}/enderecos")
+    public ResponseEntity<Object> addEndereco(@PathVariable UUID usuarioId, @RequestBody @Valid EnderecoDto enderecoDto) {
+        usuarioService.addEndereco(usuarioId, enderecoDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
     @PostMapping
     public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
         var usuarioModel = new UsuarioModel();
@@ -41,7 +60,7 @@ public class UsuarioController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneUsuario(@PathVariable (value = "id") UUID id){
-        Optional<UsuarioModel> usuarioModelOptional = usuarioService.finByID(id);
+        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);
         if(!usuarioModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }
@@ -49,7 +68,7 @@ public class UsuarioController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUsuario(@PathVariable (value = "id")UUID id){
-        Optional<UsuarioModel> usuarioModelOptional = usuarioService.finByID(id);
+        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);
         if(!usuarioModelOptional .isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }
@@ -58,7 +77,7 @@ public class UsuarioController {
     }
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id")UUID id,@RequestBody @Valid UsuarioDto usuarioDto){
-        Optional<UsuarioModel> usuarioModelOptional = usuarioService.finByID(id);
+        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);
         if (!usuarioModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
         }

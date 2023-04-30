@@ -17,7 +17,7 @@ public class AdvogadoVoluntarioModel extends PessoaModel implements Serializable
     @Column(length = 255)
     private String formacaoAcad;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "usuario_advogadovoluntario_id")
     private UsuarioModel usuarioAdvogadoVoluntario;
 
@@ -38,9 +38,9 @@ public class AdvogadoVoluntarioModel extends PessoaModel implements Serializable
                     @JoinColumn(name = "endereco_id")
             }
     )
-    Set<EnderecoModel> enderecos = new HashSet<EnderecoModel>();
+    Set<EnderecoModel> enderecos = new HashSet<EnderecoModel>();*/
 
-    public AdministradorModel getAdministradorAdvogadoVoluntario() {
+    /*public AdministradorModel getAdministradorAdvogadoVoluntario() {
         return administradorAdvogadoVoluntario;
     }
 
@@ -62,7 +62,9 @@ public class AdvogadoVoluntarioModel extends PessoaModel implements Serializable
 
     public void setUsuarioAdvogadoVoluntario(UsuarioModel usuarioAdvogadoVoluntario) {
         this.usuarioAdvogadoVoluntario = usuarioAdvogadoVoluntario;
-    }
+    }*/
+
+
 
     public String getNumOAB() {
         return numOAB;

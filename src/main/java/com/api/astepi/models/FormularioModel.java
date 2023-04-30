@@ -17,7 +17,7 @@ public class FormularioModel implements Serializable {
     @Column(length = 255)
     private String titulo;
 
-    @OneToOne(orphanRemoval = true)
+    /*@OneToOne(orphanRemoval = true)
     @JoinTable(name = "tb_formulario_secretaria_model",
             joinColumns = @JoinColumn(name = "formulario_model_id"),
             inverseJoinColumns = @JoinColumn(name = "secretaria_model_id"))
@@ -27,9 +27,11 @@ public class FormularioModel implements Serializable {
     @JoinTable(name = "tb_formulario_usuario_model",
             joinColumns = @JoinColumn(name = "formulario_model_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_model_id"))
-    private UsuarioModel usuarioFormulario;
+    private UsuarioModel usuarioFormulario;*/
 
-    public UsuarioModel getUsuarioFormulario() {
+
+
+    /*public UsuarioModel getUsuarioFormulario() {
         return usuarioFormulario;
     }
 
@@ -43,7 +45,7 @@ public class FormularioModel implements Serializable {
 
     public void setSecretariaFormulario(SecretariaModel secretariaFormulario) {
         this.secretariaFormulario = secretariaFormulario;
-    }
+    }*/
 
     public String getTitulo() {
         return titulo;

@@ -17,9 +17,11 @@ public class DocumentoModel implements Serializable {
     @Column(unique = true, length = 255)
     private String nomeDoc;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "agendamento_documento_id")
-    private AgendamentoModel agendamentoDocumento;
+    private AgendamentoModel agendamentoDocumento;*/
+
+
 
     public UUID getId() {
         return id;
@@ -37,11 +39,11 @@ public class DocumentoModel implements Serializable {
         this.nomeDoc = nomeDoc;
     }
 
-    public AgendamentoModel getAgendamentoDocumento() {
+    /*public AgendamentoModel getAgendamentoDocumento() {
         return agendamentoDocumento;
     }
 
     public void setAgendamentoDocumento(AgendamentoModel agendamentoDocumento) {
         this.agendamentoDocumento = agendamentoDocumento;
-    }
+    }*/
 }

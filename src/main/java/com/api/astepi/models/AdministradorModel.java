@@ -15,7 +15,7 @@ public class AdministradorModel extends PessoaModel implements Serializable {
 
     @Column(length = 50)
     private String sistema;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorUsuario")
+    /*@OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorUsuario")
     private List<UsuarioModel> usuario;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "administradorAdvogadoVoluntario")
@@ -25,6 +25,21 @@ public class AdministradorModel extends PessoaModel implements Serializable {
     private List<SecretarioModel> secretario;
 
 
+    public List<AdvogadoVoluntarioModel> getAdvogadoVoluntario() {
+        return advogadoVoluntario;
+    }*/
+
+    /*public void setAdvogadoVoluntario(List<AdvogadoVoluntarioModel> advogadoVoluntario) {
+        this.advogadoVoluntario = advogadoVoluntario;
+    }
+
+    public List<SecretarioModel> getSecretario() {
+        return secretario;
+    }
+
+    public void setSecretario(List<SecretarioModel> secretario) {
+        this.secretario = secretario;
+    }*/
 
     public String getSistema() {
         return sistema;
@@ -34,11 +49,11 @@ public class AdministradorModel extends PessoaModel implements Serializable {
         this.sistema = sistema;
     }
 
-    public List<UsuarioModel> getUsuario() {
+    /*public List<UsuarioModel> getUsuario() {
         return usuario;
     }
 
     public void setUsuario(List<UsuarioModel> usuario) {
         this.usuario = usuario;
-    }
+    }*/
 }

@@ -14,6 +14,11 @@ public class SecretarioModel extends PessoaModel implements Serializable {
     private String atribuicao;
 
     @ManyToOne
+    @JoinColumn(name = "secretaria_secretario_id")
+    private SecretariaModel secretariaSecretario;
+
+
+    /*@ManyToOne
     @JoinColumn(name = "administrador_secretario_id")
     private AdministradorModel administradorSecretario;
 
@@ -21,9 +26,10 @@ public class SecretarioModel extends PessoaModel implements Serializable {
     @JoinColumn(name = "usuario_secretario_id")
     private UsuarioModel usuarioSecretario;
 
-    @ManyToOne
-    @JoinColumn(name = "secretaria_secretario_id")
-    private SecretariaModel secretariaSecretario;
+
+*/
+
+
 
     public String getAtribuicao() {
         return atribuicao;
@@ -33,7 +39,15 @@ public class SecretarioModel extends PessoaModel implements Serializable {
         this.atribuicao = atribuicao;
     }
 
-    public AdministradorModel getAdministradorSecretario() {
+    public SecretariaModel getSecretariaSecretario() {
+        return secretariaSecretario;
+    }
+
+    public void setSecretariaSecretario(SecretariaModel secretariaSecretario) {
+        this.secretariaSecretario = secretariaSecretario;
+    }
+
+    /*public AdministradorModel getAdministradorSecretario() {
         return administradorSecretario;
     }
 
@@ -48,14 +62,7 @@ public class SecretarioModel extends PessoaModel implements Serializable {
     public void setUsuarioSecretario(UsuarioModel usuarioSecretario) {
         this.usuarioSecretario = usuarioSecretario;
     }
-
-    public SecretariaModel getSecretariaSecretario() {
-        return secretariaSecretario;
-    }
-
-    public void setSecretariaSecretario(SecretariaModel secretariaSecretario) {
-        this.secretariaSecretario = secretariaSecretario;
-    }
+    */
 
 
 

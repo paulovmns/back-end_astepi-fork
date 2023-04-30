@@ -73,31 +73,6 @@ public class UsuarioModel extends PessoaModel  {
 
     public void setEnderecos(List<EnderecoModel> enderecos) { this.enderecos = enderecos; }
 
-    //    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<AgendamentoModel> agendamentos = new ArrayList<>();
-
-
-/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioEndereco", cascade = CascadeType.ALL)
-    private List<EnderecoModel> endereco;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioAgendamento")
-    private List<AgendamentoModel> agendamento;
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "usuarioFormulario")
-    private FormularioModel formulario;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioSecretario")
-    private List<SecretarioModel> secretario;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioAdvogadoVoluntario")
-    private List<AdvogadoVoluntarioModel> advogadoVoluntario;
-
-    @ManyToOne
-    @JoinColumn(name = "administrador_usuario_id")
-    private AdministradorModel administradorUsuario;*/
-
-
-
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -138,51 +113,4 @@ public class UsuarioModel extends PessoaModel  {
         this.naturalidade = naturalidade;
     }
 
-    /*public List<EnderecoModel> getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(List<EnderecoModel> endereco) {
-        this.endereco = endereco;
-    }
-
-    public List<AgendamentoModel> getAgendamento() {
-        return agendamento;
-    }
-
-    public void setAgendamento(List<AgendamentoModel> agendamento) {
-        this.agendamento = agendamento;
-    }
-
-    public FormularioModel getFormulario() {
-        return formulario;
-    }
-
-    public void setFormulario(FormularioModel formulario) {
-        this.formulario = formulario;
-    }
-
-    public List<SecretarioModel> getSecretario() {
-        return secretario;
-    }
-
-    public void setSecretario(List<SecretarioModel> secretario) {
-        this.secretario = secretario;
-    }
-
-    public List<AdvogadoVoluntarioModel> getAdvogadoVoluntario() {
-        return advogadoVoluntario;
-    }
-
-    public void setAdvogadoVoluntario(List<AdvogadoVoluntarioModel> advogadoVoluntario) {
-        this.advogadoVoluntario = advogadoVoluntario;
-    }
-
-    public AdministradorModel getAdministradorUsuario() {
-        return administradorUsuario;
-    }
-
-    public void setAdministradorUsuario(AdministradorModel administradorUsuario) {
-        this.administradorUsuario = administradorUsuario;
-    }*/
 }

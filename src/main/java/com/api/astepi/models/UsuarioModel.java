@@ -2,13 +2,12 @@ package com.api.astepi.models;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -36,7 +35,49 @@ public class UsuarioModel extends PessoaModel  {
     @Column(length = 30)
     private String naturalidade;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioEndereco")
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AgendamentoModel> agendamentos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EnderecoModel> enderecos = new ArrayList<>();
+
+    public void addAgendamento(AgendamentoModel agendamento) {
+        agendamentos.add(agendamento);
+        agendamento.setUsuario(this);
+    }
+
+    public void removeAgendamento(AgendamentoModel agendamento) {
+        agendamentos.remove(agendamento);
+        agendamento.setUsuario(null);
+    }
+
+    public void addEndereco(EnderecoModel endereco) {
+        enderecos.add(endereco);
+        endereco.setUsuario(this);
+    }
+
+    public void removeEndereco(EnderecoModel endereco) {
+        enderecos.remove(endereco);
+        endereco.setUsuario(null);
+    }
+
+    public List<AgendamentoModel> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<AgendamentoModel> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
+
+    public List<EnderecoModel> getEnderecos() { return enderecos; }
+
+    public void setEnderecos(List<EnderecoModel> enderecos) { this.enderecos = enderecos; }
+
+    //    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<AgendamentoModel> agendamentos = new ArrayList<>();
+
+
+/*@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioEndereco", cascade = CascadeType.ALL)
     private List<EnderecoModel> endereco;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usuarioAgendamento")
@@ -53,7 +94,9 @@ public class UsuarioModel extends PessoaModel  {
 
     @ManyToOne
     @JoinColumn(name = "administrador_usuario_id")
-    private AdministradorModel administradorUsuario;
+    private AdministradorModel administradorUsuario;*/
+
+
 
     public Date getDataNascimento() {
         return dataNascimento;
@@ -95,7 +138,7 @@ public class UsuarioModel extends PessoaModel  {
         this.naturalidade = naturalidade;
     }
 
-    public List<EnderecoModel> getEndereco() {
+    /*public List<EnderecoModel> getEndereco() {
         return endereco;
     }
 
@@ -141,5 +184,5 @@ public class UsuarioModel extends PessoaModel  {
 
     public void setAdministradorUsuario(AdministradorModel administradorUsuario) {
         this.administradorUsuario = administradorUsuario;
-    }
+    }*/
 }

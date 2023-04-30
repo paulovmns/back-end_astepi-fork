@@ -1,5 +1,7 @@
 package com.api.astepi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -46,7 +48,12 @@ public class EnderecoModel implements Serializable {
     @Column(length = 100)
     private String estado;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private UsuarioModel usuario;
+
+    /*@ManyToOne
     @JoinColumn(name = "usuario_endereco_id")
     private UsuarioModel usuarioEndereco;
 
@@ -54,7 +61,16 @@ public class EnderecoModel implements Serializable {
     private Set<AgendamentoModel> agendamentos= new HashSet<AgendamentoModel>();
 
     @ManyToMany(mappedBy = "enderecos", cascade = { CascadeType.ALL })
-    private Set<AdvogadoVoluntarioModel> advogadosvoluntarios = new HashSet<AdvogadoVoluntarioModel>();
+    private Set<AdvogadoVoluntarioModel> advogadosvoluntarios = new HashSet<AdvogadoVoluntarioModel>();*/
+
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
+    }
 
     public UUID getId() {
         return id;
@@ -136,7 +152,7 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    public UsuarioModel getUsuarioEndereco() {
+    /*public UsuarioModel getUsuarioEndereco() {
         return usuarioEndereco;
     }
 
@@ -158,7 +174,7 @@ public class EnderecoModel implements Serializable {
 
     public void setAdvogadosvoluntarios(Set<AdvogadoVoluntarioModel> advogadosvoluntarios) {
         this.advogadosvoluntarios = advogadosvoluntarios;
-    }
+    }*/
 
     public boolean comprovanteResid() {
         String entregue = "N";

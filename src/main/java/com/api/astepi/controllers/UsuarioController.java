@@ -4,6 +4,7 @@ package com.api.astepi.controllers;
 import com.api.astepi.dtos.AgendamentoDto;
 import com.api.astepi.dtos.EnderecoDto;
 import com.api.astepi.dtos.UsuarioDto;
+import com.api.astepi.models.EnderecoModel;
 import com.api.astepi.models.UsuarioModel;
 import com.api.astepi.services.UsuarioService;
 import org.springframework.beans.BeanUtils;
@@ -14,12 +15,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -75,16 +80,39 @@ public class UsuarioController {
         usuarioService.delete(usuarioModelOptional .get());
         return ResponseEntity.status(HttpStatus.OK).body("Usuario deleted successfully.");
     }
+
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id")UUID id,@RequestBody @Valid UsuarioDto usuarioDto){
-        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);
-        if (!usuarioModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
+    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id") UUID id, @RequestBody @Valid Map<String, Object> updates) {
+        Optional<UsuarioModel> usuarioOptional = usuarioService.findByID(id);
+        if (usuarioOptional.isEmpty()) {
+            throw new NotFoundException("Usuario not found.");
         }
-        var usuarioModel = new UsuarioModel();
-        BeanUtils.copyProperties(usuarioDto, usuarioModel);
-        usuarioModel.setId(usuarioModelOptional.get().getId());
-        usuarioModel.setRegistrationDate(usuarioModelOptional.get().getRegistrationDate());
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuarioModel));
+
+        UsuarioModel usuario = usuarioOptional.get();
+        updates.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(UsuarioModel.class, key);
+            if (field != null) {
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, usuario, value);
+            }
+        });
+
+        usuario.setId(id);
+        usuarioService.save(usuario);
+        return ResponseEntity.status(HttpStatus.OK).body("Usuario atualizado com sucesso.");
     }
+
+
+    //    @PutMapping("/{id}")
+//    public ResponseEntity<Object> updateUsuario(@PathVariable(value = "id")UUID id,@RequestBody @Valid UsuarioDto usuarioDto){
+//        Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);
+//        if (!usuarioModelOptional.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario not found.");
+//        }
+//        var usuarioModel = new UsuarioModel();
+//        BeanUtils.copyProperties(usuarioDto, usuarioModel);
+//        usuarioModel.setId(usuarioModelOptional.get().getId());
+//        usuarioModel.setRegistrationDate(usuarioModelOptional.get().getRegistrationDate());
+//        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuarioModel));
+//    }
 }

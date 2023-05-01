@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import java.util.Date;
 
-public class UsuarioDto {
+public class UsuarioDto extends PessoaDto {
     @JsonIgnoreProperties(ignoreUnknown = true)
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataNascimento;

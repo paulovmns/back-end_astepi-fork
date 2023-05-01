@@ -36,6 +36,8 @@ public class PessoaDto {
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String senha;
 
+
+
     public String getNome() {
         return nome;
     }

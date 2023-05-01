@@ -16,7 +16,7 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 
 @Entity
-public class UsuarioModel extends PessoaModel  {
+public class UsuarioModel extends PessoaModel implements Serializable  {
     private static final long serialVersionUID = 1L;
 
     @Column(length = 10)

@@ -21,7 +21,7 @@ public class PessoaModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(length = 255)
+    @Column(length = 254)
     private String nome;
 
     @Column(unique = true, length = 14)

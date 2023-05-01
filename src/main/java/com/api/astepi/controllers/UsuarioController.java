@@ -4,6 +4,7 @@ package com.api.astepi.controllers;
 import com.api.astepi.dtos.AgendamentoDto;
 import com.api.astepi.dtos.EnderecoDto;
 import com.api.astepi.dtos.UsuarioDto;
+import com.api.astepi.models.AgendamentoModel;
 import com.api.astepi.models.EnderecoModel;
 import com.api.astepi.models.UsuarioModel;
 import com.api.astepi.services.UsuarioService;
@@ -89,13 +90,28 @@ public class UsuarioController {
         }
 
         UsuarioModel usuario = usuarioOptional.get();
-        updates.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(UsuarioModel.class, key);
-            if (field != null) {
+        Class<?> pessoaClass = UsuarioModel.class.getSuperclass();
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            try {
+                Field field = UsuarioModel.class.getDeclaredField(key);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, usuario, value);
+                field.set(usuario, value);
+            } catch (NoSuchFieldException e) {
+                try {
+                    Field field = pessoaClass.getDeclaredField(key);
+                    field.setAccessible(true);
+                    field.set(usuario, value);
+                } catch (NoSuchFieldException ex) {
+                    return ResponseEntity.badRequest().body("Campo inválido: " + key);
+                } catch (IllegalAccessException ex) {
+                    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+                }
+            } catch (IllegalAccessException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
-        });
+        }
 
         usuario.setId(id);
         usuarioService.save(usuario);

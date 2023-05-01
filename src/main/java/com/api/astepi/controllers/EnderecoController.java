@@ -80,13 +80,19 @@ public class EnderecoController {
         }
 
         EnderecoModel endereco = enderecoOptional.get();
-        updates.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(EnderecoModel.class, key);
-            if (field != null) {
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            try {
+                Field field = EnderecoModel.class.getDeclaredField(key);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, endereco, value);
+                field.set(endereco, value);
+            } catch (NoSuchFieldException e) {
+                return ResponseEntity.badRequest().body("Campo inválido: " + key);
+            } catch (IllegalAccessException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
-        });
+        }
 
         endereco.setId(id);
         enderecoService.save(endereco);

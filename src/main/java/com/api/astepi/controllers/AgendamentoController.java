@@ -85,18 +85,47 @@ public class AgendamentoController {
         }
 
         AgendamentoModel agendamento = agendamentoOptional.get();
-        updates.forEach((key, value) -> {
-            Field field = ReflectionUtils.findField(AgendamentoModel.class, key);
-            if (field != null) {
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            try {
+                Field field = AgendamentoModel.class.getDeclaredField(key);
                 field.setAccessible(true);
-                ReflectionUtils.setField(field, agendamento, value);
+                field.set(agendamento, value);
+            } catch (NoSuchFieldException e) {
+                return ResponseEntity.badRequest().body("Campo inválido: " + key);
+            } catch (IllegalAccessException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
-        });
+        }
 
         agendamento.setId(id);
         agendamentoService.save(agendamento);
         return ResponseEntity.status(HttpStatus.OK).body("Agendamento atualizado com sucesso.");
     }
+
+
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Object> updateAgendamento(@PathVariable(value = "id") UUID id, @RequestBody @Valid Map<String, Object> updates) {
+//        Optional<AgendamentoModel> agendamentoOptional = agendamentoService.findByID(id);
+//        if (agendamentoOptional.isEmpty()) {
+//            throw new NotFoundException("Agendamento not found.");
+//        }
+//
+//        AgendamentoModel agendamento = agendamentoOptional.get();
+//        updates.forEach((key, value) -> {
+//            Field field = ReflectionUtils.findField(AgendamentoModel.class, key);
+//            if (field != null) {
+//                field.setAccessible(true);
+//                ReflectionUtils.setField(field, agendamento, value);
+//            }
+//        });
+//
+//        agendamento.setId(id);
+//        agendamentoService.save(agendamento);
+//        return ResponseEntity.status(HttpStatus.OK).body("Agendamento atualizado com sucesso.");
+//    }
 
 
 

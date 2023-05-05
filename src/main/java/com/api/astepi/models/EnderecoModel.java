@@ -141,15 +141,7 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    /*public UsuarioModel getUsuarioEndereco() {
-        return usuarioEndereco;
-    }
-
-    public void setUsuarioEndereco(UsuarioModel usuarioEndereco) {
-        this.usuarioEndereco = usuarioEndereco;
-    }
-
-    public Set<AgendamentoModel> getAgendamentos() {
+    /*public Set<AgendamentoModel> getAgendamentos() {
         return agendamentos;
     }
 

@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 public class PessoaDto {
     @JsonIgnoreProperties(ignoreUnknown = true) //validações para verificar se não estar vindo null ou número vázio.
@@ -16,27 +17,31 @@ public class PessoaDto {
     private String cpf;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int celular;
+    private String celular;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String telFixo;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String email;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int matricula;
+    private String matricula;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String cargo;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private boolean status;
+    private String status;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private String nomeLogin;
+    private String username;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private String senha;
+    private String password;
 
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private LocalDateTime registrationDate;
 
     public String getNome() {
         return nome;
@@ -54,12 +59,20 @@ public class PessoaDto {
         this.cpf = cpf;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    public String getTelFixo() {
+        return telFixo;
+    }
+
+    public void setTelFixo(String telFixo) {
+        this.telFixo = telFixo;
     }
 
     public String getEmail() {
@@ -70,11 +83,11 @@ public class PessoaDto {
         this.email = email;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -86,27 +99,35 @@ public class PessoaDto {
         this.cargo = cargo;
     }
 
-    public boolean isStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getNomeLogin() {
-        return nomeLogin;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNomeLogin(String nomeLogin) {
-        this.nomeLogin = nomeLogin;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
     }
 }

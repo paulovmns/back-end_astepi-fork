@@ -2,6 +2,7 @@ package com.api.astepi.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
@@ -16,7 +17,7 @@ public class EnderecoDto {
     private String rua;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int numero;
+    private String numero;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String cep;
@@ -25,7 +26,7 @@ public class EnderecoDto {
     private String complemento;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int celular;
+    private String referencia;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String bairro;
@@ -52,12 +53,20 @@ public class EnderecoDto {
         this.rua = rua;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public String getCep() {
@@ -74,14 +83,6 @@ public class EnderecoDto {
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
-    }
-
-    public int getCelular() {
-        return celular;
-    }
-
-    public void setCelular(int celular) {
-        this.celular = celular;
     }
 
     public String getBairro() {

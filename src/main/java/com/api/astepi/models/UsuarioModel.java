@@ -1,8 +1,7 @@
 package com.api.astepi.models;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.DiscriminatorOptions;
 
 import javax.persistence.*;
@@ -23,16 +22,16 @@ public class UsuarioModel extends PessoaModel implements Serializable  {
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date dataNascimento;
 
-    @Column(length = 50)
+    @Column(length = 254)
     private String profissao;
 
     @Column(length = 30)
     private String estadoCivil;
 
-    @Column(length = 30)
+    @Column(length = 40)
     private String nacionalidade;
 
-    @Column(length = 30)
+    @Column(length = 40)
     private String naturalidade;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

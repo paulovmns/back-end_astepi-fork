@@ -27,26 +27,29 @@ public class PessoaModel implements Serializable {
     @Column(unique = true, length = 14)
     private String cpf;
 
-    @Column(length = 11)
-    private int celular;
+    @Column(length = 15)
+    private String celular;
+
+    @Column(length = 15)
+    private String telFixo;
 
     @Column(length = 50)
     private String email;
 
-    @Column(length = 10)
-    private int matricula;
+    @Column(length = 15)
+    private String matricula;
 
     @Column(length = 50)
     private String cargo;
 
-    @Column(length = 10)
-    private boolean status;
+    @Column(length = 254)
+    private String status;
 
     @Column(length = 25)
-    private String nomeLogin;
+    private String username;
 
-    @Column(length = 9)
-    private String senha;
+    @Column(length = 20)
+    private String password;
 
     @Column
     private LocalDateTime registrationDate;
@@ -76,14 +79,6 @@ public class PessoaModel implements Serializable {
         this.cpf = cpf;
     }
 
-    public int getCelular() {
-        return celular;
-    }
-
-    public void setCelular(int celular) {
-        this.celular = celular;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -92,12 +87,52 @@ public class PessoaModel implements Serializable {
         this.email = email;
     }
 
-    public int getMatricula() {
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public String getTelFixo() {
+        return telFixo;
+    }
+
+    public void setTelFixo(String telFixo) {
+        this.telFixo = telFixo;
+    }
+
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCargo() {
@@ -106,30 +141,6 @@ public class PessoaModel implements Serializable {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public String getNomeLogin() {
-        return nomeLogin;
-    }
-
-    public void setNomeLogin(String nomeLogin) {
-        this.nomeLogin = nomeLogin;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public LocalDateTime getRegistrationDate() {

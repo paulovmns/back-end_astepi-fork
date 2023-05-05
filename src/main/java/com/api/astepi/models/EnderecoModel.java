@@ -21,28 +21,25 @@ public class EnderecoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(length = 255)
+    @Column(length = 254)
     private String rua;
 
     @Column(length = 15)
-    private int numero;
+    private String numero;
 
     @Column(length = 15)
     private String cep;
 
-    @Column(length = 255)
+    @Column(length = 254)
     private String complemento;
 
-    @Column(length = 15)
-    private int telefoneFixo;
+    @Column(length = 254)
+    private String referencia;
 
-    @Column(length = 15)
-    private int celular;
-
-    @Column(length = 255)
+    @Column(length = 254)
     private String bairro;
 
-    @Column(length = 255)
+    @Column(length = 254)
     private String cidade;
 
     @Column(length = 100)
@@ -88,14 +85,6 @@ public class EnderecoModel implements Serializable {
         this.rua = rua;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
     public String getCep() {
         return cep;
     }
@@ -112,20 +101,20 @@ public class EnderecoModel implements Serializable {
         this.complemento = complemento;
     }
 
-    public int getTelefoneFixo() {
-        return telefoneFixo;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setTelefoneFixo(int telefoneFixo) {
-        this.telefoneFixo = telefoneFixo;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public int getCelular() {
-        return celular;
+    public String getReferencia() {
+        return referencia;
     }
 
-    public void setCelular(int celular) {
-        this.celular = celular;
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
     }
 
     public String getBairro() {

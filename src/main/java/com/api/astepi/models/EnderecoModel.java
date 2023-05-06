@@ -1,6 +1,9 @@
 package com.api.astepi.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -45,7 +48,8 @@ public class EnderecoModel implements Serializable {
     @Column(length = 100)
     private String estado;
 
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private UsuarioModel usuario;
@@ -141,7 +145,15 @@ public class EnderecoModel implements Serializable {
         this.estado = estado;
     }
 
-    /*public Set<AgendamentoModel> getAgendamentos() {
+    /*public UsuarioModel getUsuarioEndereco() {
+        return usuarioEndereco;
+    }
+
+    public void setUsuarioEndereco(UsuarioModel usuarioEndereco) {
+        this.usuarioEndereco = usuarioEndereco;
+    }
+
+    public Set<AgendamentoModel> getAgendamentos() {
         return agendamentos;
     }
 

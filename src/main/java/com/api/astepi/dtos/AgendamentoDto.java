@@ -13,19 +13,19 @@ public class AgendamentoDto {
     private UUID usuarioId;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int dia;
+    private String dia;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int mes;
+    private String mes;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int ano;
+    private String ano;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private int horario;
+    private String horario;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private String sala;
+    private String observacao;
 
 
     public UUID getUsuarioId() {
@@ -46,46 +46,47 @@ public class AgendamentoDto {
     @JsonIgnoreProperties(ignoreUnknown = true)
     DocumentoDto documentoDto;*/
 
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
-    public int getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(int horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
 
-    public String getSala() {
-        return sala;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
-/*
+
+    /*
     public UsuarioDto getUsuarioDto() {
         return usuarioDto;
     }

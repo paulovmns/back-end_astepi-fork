@@ -85,11 +85,6 @@ public class AgendamentoModel implements Serializable {
         this.usuarioAgendamento = usuarioAgendamento;
     }*/
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuarioModel_id")
-    private UsuarioModel usuarioModel;*/
-
-
     public UUID getId() {
         return id;
     }

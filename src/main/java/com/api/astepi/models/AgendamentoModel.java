@@ -26,19 +26,19 @@ public class AgendamentoModel implements Serializable {
 //    private UsuarioModel usuario;
 
     @Column(length = 2)
-    private int dia;
+    private String dia;
 
     @Column(length = 2)
-    private int mes;
+    private String mes;
 
     @Column(length = 4)
-    private int ano;
+    private String ano;
 
     @Column(length = 4)
-    private int horario;
+    private String horario;
 
-    @Column(length = 255)
-    private String sala;
+    @Column(length = 254)
+    private String observacao;
 
     //@JsonIgnore
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -98,47 +98,47 @@ public class AgendamentoModel implements Serializable {
         this.id = id;
     }
 
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
 
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
 
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
 
-    public void setMes(int mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
 
-    public int getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(int ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 
-    public int getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(int horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
 
-    public String getSala() {
-        return sala;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setSala(String sala) {
-        this.sala = sala;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
-   /* public UsuarioModel getUsuarioModel() {
+    /* public UsuarioModel getUsuarioModel() {
         return usuarioModel;
     }
     public void setUsuarioModel(UsuarioModel usuarioModel) {

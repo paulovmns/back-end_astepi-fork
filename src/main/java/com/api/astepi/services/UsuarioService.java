@@ -75,7 +75,11 @@ public class UsuarioService {
 
         AnaliseSocioEconomicaModel analiseSocioEconomicaModel = new AnaliseSocioEconomicaModel();
         BeanUtils.copyProperties(analiseSocioEconomicaDto, analiseSocioEconomicaModel);
-        analiseSocioEconomicaModel.setRendaPerCapita((analiseSocioEconomicaModel.getRendaFamiliar()/analiseSocioEconomicaModel.getNumeroDependentes()));
+        if (analiseSocioEconomicaModel.getNumeroDependentes() > 0) {
+            analiseSocioEconomicaModel.setRendaPerCapita((analiseSocioEconomicaModel.getRendaFamiliar()/analiseSocioEconomicaModel.getNumeroDependentes()));
+        } else {
+            analiseSocioEconomicaModel.setRendaPerCapita(analiseSocioEconomicaModel.getRendaFamiliar());
+        }
         analiseSocioEconomicaModel.setUsuario(usuarioModel);
 
         usuarioModel.setAnaliseSocioEconomica(analiseSocioEconomicaModel);

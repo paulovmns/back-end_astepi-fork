@@ -14,16 +14,11 @@ import java.util.UUID;
 @Entity
 @Table(name = "TB_AGENDAMENTO")
 public class AgendamentoModel implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    //@ManyToOne(fetch = FetchType.EAGER, optional = false)
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-//    private UsuarioModel usuario;
 
     @Column(length = 2)
     private String dia;

@@ -1,57 +1,70 @@
 package com.api.astepi.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_ANALISESEC")
+@Table(name = "TB_ANALISESOCIOECO")
 public class AnaliseSocioEconomicaModel implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(nullable = false, length = 15)
+    @Column(length = 2)
     private int numeroDependentes;
 
-    @Column(nullable = false, length = 15)
+    @Column(length = 2)
     private int qtdDesempregados;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private double rendaFamiliar;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 20)
+    private double rendaPerCapita;
+
+    @Column(length = 254)
     private String nomePai;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 254)
     private String nomeMae;
 
-    @Column(nullable = false, unique = true, length = 255)
+    @Column(length = 254)
     private String profissaoCompanheiro;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private double despesaAluguel;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private double despesaColegio;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private double outrasDespesas;
 
-    @Column(nullable = false, length = 10)
-    private boolean tipoAtendimento;
+    @Column(length = 254)
+    private String tipoAtendimento;
 
-    @Column(nullable = false, length = 10)
-    private boolean portaDeEntrada;
+    @Column(length = 254)
+    private String portaDeEntrada;
 
-    @Column(nullable = false, unique = true, length = 255)
-    UsuarioModel usuarioModel;
+    @Column(columnDefinition="text", length=10485760)
+    private String observacao;
 
-    @Column(nullable = false, unique = true, length = 255)
-    AdvogadoVoluntarioModel advogadoVoluntarioModel;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    private UsuarioModel usuario;
+
+    //@Column(nullable = false, unique = true, length = 255)
+    //AdvogadoVoluntarioModel advogadoVoluntarioModel;
 
     public UUID getId() {
         return id;
@@ -59,6 +72,14 @@ public class AnaliseSocioEconomicaModel implements Serializable {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public UsuarioModel getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioModel usuario) {
+        this.usuario = usuario;
     }
 
     public int getNumeroDependentes() {
@@ -83,6 +104,14 @@ public class AnaliseSocioEconomicaModel implements Serializable {
 
     public void setRendaFamiliar(double rendaFamiliar) {
         this.rendaFamiliar = rendaFamiliar;
+    }
+
+    public double getRendaPerCapita() {
+        return rendaPerCapita;
+    }
+
+    public void setRendaPerCapita(double rendaPerCapita) {
+        this.rendaPerCapita = rendaPerCapita;
     }
 
     public String getNomePai() {
@@ -133,36 +162,28 @@ public class AnaliseSocioEconomicaModel implements Serializable {
         this.outrasDespesas = outrasDespesas;
     }
 
-    public boolean isTipoAtendimento() {
+    public String getTipoAtendimento() {
         return tipoAtendimento;
     }
 
-    public void setTipoAtendimento(boolean tipoAtendimento) {
+    public void setTipoAtendimento(String tipoAtendimento) {
         this.tipoAtendimento = tipoAtendimento;
     }
 
-    public boolean isPortaDeEntrada() {
+    public String getPortaDeEntrada() {
         return portaDeEntrada;
     }
 
-    public void setPortaDeEntrada(boolean portaDeEntrada) {
+    public void setPortaDeEntrada(String portaDeEntrada) {
         this.portaDeEntrada = portaDeEntrada;
     }
 
-    public UsuarioModel getUsuarioModel() {
-        return usuarioModel;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setUsuarioModel(UsuarioModel usuarioModel) {
-        this.usuarioModel = usuarioModel;
-    }
-
-    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        return advogadoVoluntarioModel;
-    }
-
-    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public double rendaPerCapita() {

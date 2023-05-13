@@ -28,10 +28,10 @@ public class UsuarioModel extends PessoaModel implements Serializable  {
     @Column(length = 30)
     private String estadoCivil;
 
-    @Column(length = 40)
+    @Column(length = 80)
     private String nacionalidade;
 
-    @Column(length = 40)
+    @Column(length = 80)
     private String naturalidade;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -40,37 +40,36 @@ public class UsuarioModel extends PessoaModel implements Serializable  {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EnderecoModel> enderecos = new ArrayList<>();
 
-    public void addAgendamento(AgendamentoModel agendamento) {
-        agendamentos.add(agendamento);
-        agendamento.setUsuario(this);
-    }
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DocumentoModel> documentos = new ArrayList<>();
 
-    public void removeAgendamento(AgendamentoModel agendamento) {
-        agendamentos.remove(agendamento);
-        agendamento.setUsuario(null);
-    }
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private AnaliseSocioEconomicaModel analiseSocioEconomica;
 
-    public void addEndereco(EnderecoModel endereco) {
-        enderecos.add(endereco);
-        endereco.setUsuario(this);
-    }
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private DeclaracaoInicialModel declaracaoInicial;
 
-    public void removeEndereco(EnderecoModel endereco) {
-        enderecos.remove(endereco);
-        endereco.setUsuario(null);
-    }
 
-    public List<AgendamentoModel> getAgendamentos() {
-        return agendamentos;
-    }
+//    public void addAgendamento(AgendamentoModel agendamento) {
+//        agendamentos.add(agendamento);
+//        agendamento.setUsuario(this);
+//    }
+//
+//    public void removeAgendamento(AgendamentoModel agendamento) {
+//        agendamentos.remove(agendamento);
+//        agendamento.setUsuario(null);
+//    }
+//
+//    public void addEndereco(EnderecoModel endereco) {
+//        enderecos.add(endereco);
+//        endereco.setUsuario(this);
+//    }
+//
+//    public void removeEndereco(EnderecoModel endereco) {
+//        enderecos.remove(endereco);
+//        endereco.setUsuario(null);
+//    }
 
-    public void setAgendamentos(List<AgendamentoModel> agendamentos) {
-        this.agendamentos = agendamentos;
-    }
-
-    public List<EnderecoModel> getEnderecos() { return enderecos; }
-
-    public void setEnderecos(List<EnderecoModel> enderecos) { this.enderecos = enderecos; }
 
     public Date getDataNascimento() {
         return dataNascimento;
@@ -112,4 +111,43 @@ public class UsuarioModel extends PessoaModel implements Serializable  {
         this.naturalidade = naturalidade;
     }
 
+    public List<AgendamentoModel> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void setAgendamentos(List<AgendamentoModel> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
+
+    public List<EnderecoModel> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<EnderecoModel> enderecos) {
+        this.enderecos = enderecos;
+    }
+
+    public List<DocumentoModel> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<DocumentoModel> documentos) {
+        this.documentos = documentos;
+    }
+
+    public AnaliseSocioEconomicaModel getAnaliseSocioEconomica() {
+        return analiseSocioEconomica;
+    }
+
+    public void setAnaliseSocioEconomica(AnaliseSocioEconomicaModel analiseSocioEconomica) {
+        this.analiseSocioEconomica = analiseSocioEconomica;
+    }
+
+    public DeclaracaoInicialModel getDeclaracaoInicial() {
+        return declaracaoInicial;
+    }
+
+    public void setDeclaracaoInicial(DeclaracaoInicialModel declaracaoInicial) {
+        this.declaracaoInicial = declaracaoInicial;
+    }
 }

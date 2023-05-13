@@ -27,6 +27,9 @@ public class PessoaModel implements Serializable {
     @Column(unique = true, length = 14)
     private String cpf;
 
+    @Column(length = 14)
+    private String rg;
+
     @Column(length = 15)
     private String celular;
 
@@ -77,6 +80,14 @@ public class PessoaModel implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getEmail() {

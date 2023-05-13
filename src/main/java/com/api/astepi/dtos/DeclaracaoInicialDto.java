@@ -1,20 +1,22 @@
 package com.api.astepi.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotBlank;
 
 public class DeclaracaoInicialDto {
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String narrativa;
 
-    @NotBlank
-    private boolean parecerVoluntario;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String parecerVoluntario;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private boolean homologacaoDocente;
 
-    @NotBlank
-    DeclaracaoInicialDto declaracaoInicialDto;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String homologacaoComentario;
 
     public String getNarrativa() {
         return narrativa;
@@ -24,11 +26,11 @@ public class DeclaracaoInicialDto {
         this.narrativa = narrativa;
     }
 
-    public boolean isParecerVoluntario() {
+    public String getParecerVoluntario() {
         return parecerVoluntario;
     }
 
-    public void setParecerVoluntario(boolean parecerVoluntario) {
+    public void setParecerVoluntario(String parecerVoluntario) {
         this.parecerVoluntario = parecerVoluntario;
     }
 
@@ -40,11 +42,11 @@ public class DeclaracaoInicialDto {
         this.homologacaoDocente = homologacaoDocente;
     }
 
-    public DeclaracaoInicialDto getDeclaracaoInicialDto() {
-        return declaracaoInicialDto;
+    public String getHomologacaoComentario() {
+        return homologacaoComentario;
     }
 
-    public void setDeclaracaoInicialDto(DeclaracaoInicialDto declaracaoInicialDto) {
-        this.declaracaoInicialDto = declaracaoInicialDto;
+    public void setHomologacaoComentario(String homologacaoComentario) {
+        this.homologacaoComentario = homologacaoComentario;
     }
 }

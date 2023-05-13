@@ -10,11 +10,14 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class PessoaDto {
-    @JsonIgnoreProperties(ignoreUnknown = true) //validações para verificar se não estar vindo null ou número vázio.
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nome;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String cpf;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String rg;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String celular;
@@ -57,6 +60,14 @@ public class PessoaDto {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getCelular() {

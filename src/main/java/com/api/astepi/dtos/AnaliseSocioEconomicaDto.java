@@ -2,50 +2,52 @@ package com.api.astepi.dtos;
 
 
 import com.api.astepi.models.AdvogadoVoluntarioModel;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class AnaliseSocioEconomicaDto {
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int numeroDependentes;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private int qtdDesempregados;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private double rendaFamiliar;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private double rendaPerCapita;
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nomePai;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String nomeMae;
 
-    @NotBlank
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private String profissaoCompanheiro;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private double despesaAluguel;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private double despesaColegio;
 
-    @NotNull
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private double outrasDespesas;
 
-    @NotNull
-    private boolean tipoAtendimento;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String tipoAtendimento;
 
-    @NotNull
-    private boolean portaDeEntrada;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String portaDeEntrada;
 
-    @NotBlank
-    UsuarioDto usuarioDto;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    private String observacao;
 
-    @NotBlank
-    AdvogadoVoluntarioModel advogadoVoluntarioModel;
 
     public int getNumeroDependentes() {
         return numeroDependentes;
@@ -69,6 +71,14 @@ public class AnaliseSocioEconomicaDto {
 
     public void setRendaFamiliar(double rendaFamiliar) {
         this.rendaFamiliar = rendaFamiliar;
+    }
+
+    public double getRendaPerCapita() {
+        return rendaPerCapita;
+    }
+
+    public void setRendaPerCapita(double rendaPerCapita) {
+        this.rendaPerCapita = rendaPerCapita;
     }
 
     public String getNomePai() {
@@ -119,35 +129,28 @@ public class AnaliseSocioEconomicaDto {
         this.outrasDespesas = outrasDespesas;
     }
 
-    public boolean isTipoAtendimento() {
+    public String getTipoAtendimento() {
         return tipoAtendimento;
     }
 
-    public void setTipoAtendimento(boolean tipoAtendimento) {
+    public void setTipoAtendimento(String tipoAtendimento) {
         this.tipoAtendimento = tipoAtendimento;
     }
 
-    public boolean isPortaDeEntrada() {
+    public String getPortaDeEntrada() {
         return portaDeEntrada;
     }
 
-    public void setPortaDeEntrada(boolean portaDeEntrada) {
+    public void setPortaDeEntrada(String portaDeEntrada) {
         this.portaDeEntrada = portaDeEntrada;
     }
 
-    public UsuarioDto getUsuarioDto() {
-        return usuarioDto;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setUsuarioDto(UsuarioDto usuarioDto) {
-        this.usuarioDto = usuarioDto;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
-    public AdvogadoVoluntarioModel getAdvogadoVoluntarioModel() {
-        return advogadoVoluntarioModel;
-    }
-
-    public void setAdvogadoVoluntarioModel(AdvogadoVoluntarioModel advogadoVoluntarioModel) {
-        this.advogadoVoluntarioModel = advogadoVoluntarioModel;
-    }
 }

@@ -15,14 +15,17 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/declaracaoInicials")
+@RequestMapping("/declaracoes")
 public class DeclaracaoInicialController {
     final DeclaracaoInicialService declaracaoInicialService;
 
@@ -44,7 +47,7 @@ public class DeclaracaoInicialController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getOneDeclaracaoInicial(@PathVariable (value = "id") UUID id){
-        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.finByID(id);
+        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.findByID(id);
         if(!declaracaoInicialModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("DeclaracaoInicial not found.");
         }
@@ -53,7 +56,7 @@ public class DeclaracaoInicialController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteDeclaracaoInicial(@PathVariable (value = "id")UUID id){
-        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.finByID(id);
+        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.findByID(id);
         if(!declaracaoInicialModelOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("DeclaracaoInicial not found.");
         }
@@ -61,16 +64,45 @@ public class DeclaracaoInicialController {
         return ResponseEntity.status(HttpStatus.OK).body("DeclaracaoInicial deleted successfully.");
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateDeclaracaoInicial(@PathVariable(value = "id")UUID id,@RequestBody @Valid DeclaracaoInicialDto declaracaoInicialDto){
-        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.finByID(id);
-        if (!declaracaoInicialModelOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("DeclaracaoInicial not found.");
+    public ResponseEntity<Object> updateDeclaracaoInicial(@PathVariable(value = "id") UUID id, @RequestBody @Valid Map<String, Object> updates) {
+        Optional<DeclaracaoInicialModel> declaracaoInicialOptional = declaracaoInicialService.findByID(id);
+        if (declaracaoInicialOptional.isEmpty()) {
+            throw new NotFoundException("Declaração Inicial not found.");
         }
-        var declaracaoInicialModel = new DeclaracaoInicialModel();
-        BeanUtils.copyProperties(declaracaoInicialDto, declaracaoInicialModel);
-        declaracaoInicialModel.setId(declaracaoInicialModelOptional.get().getId());
-        return ResponseEntity.status(HttpStatus.OK).body(declaracaoInicialService.save(declaracaoInicialModel));
+
+        DeclaracaoInicialModel declaracaoInicial = declaracaoInicialOptional.get();
+        for (Map.Entry<String, Object> entry : updates.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            try {
+                Field field = DeclaracaoInicialModel.class.getDeclaredField(key);
+                field.setAccessible(true);
+                field.set(declaracaoInicial, value);
+            } catch (NoSuchFieldException e) {
+                return ResponseEntity.badRequest().body("Campo inválido: " + key);
+            } catch (IllegalAccessException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        }
+
+        declaracaoInicial.setId(id);
+        declaracaoInicialService.save(declaracaoInicial);
+        return ResponseEntity.status(HttpStatus.OK).body("Declaração Inicial atualizada com sucesso.");
     }
+
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Object> updateDeclaracaoInicial(@PathVariable(value = "id")UUID id,@RequestBody @Valid DeclaracaoInicialDto declaracaoInicialDto){
+//        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.finByID(id);
+//        if (!declaracaoInicialModelOptional.isPresent()) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("DeclaracaoInicial not found.");
+//        }
+//        var declaracaoInicialModel = new DeclaracaoInicialModel();
+//        BeanUtils.copyProperties(declaracaoInicialDto, declaracaoInicialModel);
+//        declaracaoInicialModel.setId(declaracaoInicialModelOptional.get().getId());
+//        return ResponseEntity.status(HttpStatus.OK).body(declaracaoInicialService.save(declaracaoInicialModel));
+//    }
 
 }

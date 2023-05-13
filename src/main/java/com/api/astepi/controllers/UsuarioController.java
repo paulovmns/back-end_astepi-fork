@@ -1,9 +1,7 @@
 package com.api.astepi.controllers;
 
 
-import com.api.astepi.dtos.AgendamentoDto;
-import com.api.astepi.dtos.EnderecoDto;
-import com.api.astepi.dtos.UsuarioDto;
+import com.api.astepi.dtos.*;
 import com.api.astepi.models.AgendamentoModel;
 import com.api.astepi.models.EnderecoModel;
 import com.api.astepi.models.UsuarioModel;
@@ -18,9 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.webjars.NotFoundException;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -53,6 +53,31 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PostMapping("/{usuarioId}/analises")
+    public ResponseEntity<Object> setAnaliseSec(@PathVariable UUID usuarioId, @RequestBody @Valid AnaliseSocioEconomicaDto analiseSocioEconomicaDto) {
+        usuarioService.setAnaliseSec(usuarioId, analiseSocioEconomicaDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{usuarioId}/declaracao")
+    public ResponseEntity<Object> setDeclaracaoInicial(@PathVariable UUID usuarioId, @RequestBody @Valid DeclaracaoInicialDto declaracaoInicialDto) {
+        usuarioService.setDeclaracaoInicial(usuarioId, declaracaoInicialDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{usuarioId}/documentos")
+    public ResponseEntity<String> uploadArquivo(@PathVariable UUID usuarioId,
+                                                @RequestParam("arquivo") MultipartFile arquivo,
+                                                @RequestParam("descricao") String descricao) {
+        try {
+            usuarioService.salvarDocumento(usuarioId, arquivo, descricao);
+            return ResponseEntity.ok("Arquivo salvo com sucesso!");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao salvar arquivo.");
+        }
+    }
+
+
     @PostMapping
     public ResponseEntity<Object> saveUsuario(@RequestBody @Valid UsuarioDto usuarioDto){
         var usuarioModel = new UsuarioModel();
@@ -72,6 +97,7 @@ public class UsuarioController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(usuarioModelOptional.get());
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteUsuario(@PathVariable (value = "id")UUID id){
         Optional<UsuarioModel> usuarioModelOptional = usuarioService.findByID(id);

@@ -29,7 +29,7 @@ public class AnaliseSocioEconomicaService {
         return analiseSocioEconomicaRepository.findAll(pageable);
     }
 
-    public Optional<AnaliseSocioEconomicaModel> finByID(UUID id) {
+    public Optional<AnaliseSocioEconomicaModel> findByID(UUID id) {
         return analiseSocioEconomicaRepository.findById(id);
     }
 

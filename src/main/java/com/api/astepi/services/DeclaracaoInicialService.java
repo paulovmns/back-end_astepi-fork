@@ -29,7 +29,7 @@ public class DeclaracaoInicialService {
         return declaracaoInicialRepository.findAll(pageable);
     }
 
-    public Optional<DeclaracaoInicialModel> finByID(UUID id) {
+    public Optional<DeclaracaoInicialModel> findByID(UUID id) {
         return declaracaoInicialRepository.findById(id);
     }
 

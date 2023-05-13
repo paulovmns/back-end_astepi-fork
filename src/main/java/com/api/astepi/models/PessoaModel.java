@@ -36,7 +36,7 @@ public class PessoaModel implements Serializable {
     @Column(length = 15)
     private String telFixo;
 
-    @Column(length = 50)
+    @Column(unique = true, length = 50)
     private String email;
 
     @Column(length = 15)
@@ -48,10 +48,10 @@ public class PessoaModel implements Serializable {
     @Column(length = 254)
     private String status;
 
-    @Column(length = 25)
+    @Column(unique = true, length = 30)
     private String username;
 
-    @Column(length = 20)
+    @Column(length = 30)
     private String password;
 
     @Column

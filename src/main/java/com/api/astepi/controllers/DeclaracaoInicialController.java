@@ -93,16 +93,5 @@ public class DeclaracaoInicialController {
     }
 
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Object> updateDeclaracaoInicial(@PathVariable(value = "id")UUID id,@RequestBody @Valid DeclaracaoInicialDto declaracaoInicialDto){
-//        Optional<DeclaracaoInicialModel> declaracaoInicialModelOptional = declaracaoInicialService.finByID(id);
-//        if (!declaracaoInicialModelOptional.isPresent()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("DeclaracaoInicial not found.");
-//        }
-//        var declaracaoInicialModel = new DeclaracaoInicialModel();
-//        BeanUtils.copyProperties(declaracaoInicialDto, declaracaoInicialModel);
-//        declaracaoInicialModel.setId(declaracaoInicialModelOptional.get().getId());
-//        return ResponseEntity.status(HttpStatus.OK).body(declaracaoInicialService.save(declaracaoInicialModel));
-//    }
 
 }

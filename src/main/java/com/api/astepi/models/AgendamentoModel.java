@@ -20,19 +20,19 @@ public class AgendamentoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(length = 2)
+    @Column(length = 10)
     private String dia;
 
-    @Column(length = 2)
+    @Column(length = 10)
     private String mes;
 
-    @Column(length = 4)
+    @Column(length = 10)
     private String ano;
 
-    @Column(length = 4)
+    @Column(length = 10)
     private String horario;
 
-    @Column(length = 254)
+    @Column(columnDefinition="text", length=10485760)
     private String observacao;
 
     //@JsonIgnore

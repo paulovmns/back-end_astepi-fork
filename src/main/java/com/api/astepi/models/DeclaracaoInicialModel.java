@@ -26,7 +26,7 @@ public class DeclaracaoInicialModel implements Serializable {
     private String parecerVoluntario;
 
     @Column
-    private boolean homologacaoDocente;
+    private String homologacaoDocente;
 
     @Column(columnDefinition="text", length=10485760)
     private String homologacaoComentario;
@@ -80,11 +80,11 @@ public class DeclaracaoInicialModel implements Serializable {
         this.usuario = usuario;
     }
 
-    public boolean isHomologacaoDocente() {
+    public String isHomologacaoDocente() {
         return homologacaoDocente;
     }
 
-    public void setHomologacaoDocente(boolean homologacaoDocente) {
+    public void setHomologacaoDocente(String homologacaoDocente) {
         this.homologacaoDocente = homologacaoDocente;
     }
 

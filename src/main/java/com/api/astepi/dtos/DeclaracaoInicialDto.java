@@ -34,7 +34,7 @@ public class DeclaracaoInicialDto {
         this.parecerVoluntario = parecerVoluntario;
     }
 
-    public String isHomologacaoDocente() {
+    public String getHomologacaoDocente() {
         return homologacaoDocente;
     }
 

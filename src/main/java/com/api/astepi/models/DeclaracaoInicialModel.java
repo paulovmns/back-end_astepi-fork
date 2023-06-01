@@ -64,6 +64,14 @@ public class DeclaracaoInicialModel implements Serializable {
         this.parecerVoluntario = parecerVoluntario;
     }
 
+    public String getHomologacaoDocente() {
+        return homologacaoDocente;
+    }
+
+    public void setHomologacaoDocente(String homologacaoDocente) {
+        this.homologacaoDocente = homologacaoDocente;
+    }
+
     public String getHomologacaoComentario() {
         return homologacaoComentario;
     }
@@ -79,13 +87,4 @@ public class DeclaracaoInicialModel implements Serializable {
     public void setUsuario(UsuarioModel usuario) {
         this.usuario = usuario;
     }
-
-    public String isHomologacaoDocente() {
-        return homologacaoDocente;
-    }
-
-    public void setHomologacaoDocente(String homologacaoDocente) {
-        this.homologacaoDocente = homologacaoDocente;
-    }
-
 }

@@ -13,7 +13,7 @@ public class DeclaracaoInicialDto {
     private String parecerVoluntario;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private boolean homologacaoDocente;
+    private String homologacaoDocente;
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     private String homologacaoComentario;
@@ -34,11 +34,11 @@ public class DeclaracaoInicialDto {
         this.parecerVoluntario = parecerVoluntario;
     }
 
-    public boolean isHomologacaoDocente() {
+    public String isHomologacaoDocente() {
         return homologacaoDocente;
     }
 
-    public void setHomologacaoDocente(boolean homologacaoDocente) {
+    public void setHomologacaoDocente(String homologacaoDocente) {
         this.homologacaoDocente = homologacaoDocente;
     }
 
